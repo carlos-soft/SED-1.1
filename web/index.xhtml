@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="styles.css"  />
+    </h:head>
+    <h:body>
+        <div id="heading">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td width="275" align="center" class="slogan">Centro de Idiomas</td>
+                            </tr>
+                            <tr>
+                                <td align="center" class="name">I T S U R</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td align="right">
+                        <h:graphicImage library="img" name="logo.jpg" alt="Centro de Indiomas"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="menu">
+            <h:form> 
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:submenu label="Alumnos" icon="ui-icon-document">
+                        <p:menuitem value="Aplicar Evaluacion" icon="ui-icon-contact"/>
+                    </p:submenu>
+
+                    <p:submenu label="Admin" icon="ui-icon-pencil">
+                        <p:menuitem value="Periodos" url="#" icon="ui-icon-newwin" />
+                        <p:menuitem value="Lenguajes" url="#" icon="ui-icon-newwin" />
+                        <p:menuitem value="Docentes" url="#" icon="ui-icon-newwin" />
+                        <p:menuitem value="Grupos" url="#" icon="ui-icon-newwin" />
+                        <p:menuitem value="Preguntas" url="#" icon="ui-icon-newwin" />
+                    </p:submenu>
+
+                    <p:submenu label="Help" icon="ui-icon-help">
+                        <p:menuitem value="Info" icon="ui-icon-gear" url="#" />
+                    </p:submenu>
+
+                    <f:facet name="options">
+                        <p:inputText style="margin-right:10px"/>
+                        <p:commandButton type="button" value="Buscar" icon="ui-icon-search" />
+                    </f:facet>
+                </p:menubar>
+            </h:form>
+        </div>
+
+        <div id="content">
+            Contenido
+        </div>
+    </h:body>
+</html>
+

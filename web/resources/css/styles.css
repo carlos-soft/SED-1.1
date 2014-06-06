@@ -1,0 +1,48 @@
+body{
+    background: #c4e5f5;
+}
+#heading {
+    position: absolute;
+    right: 12%;
+    left: 15%;
+    top: 4%;
+
+    //padding: 5px;
+    height: 19%;
+
+    margin-bottom: 4%;
+    background: #ffffff;
+    border: 1px solid darkGray;
+
+}
+
+#menu{
+    position: absolute;
+    right: 12%;
+    left: 15%;
+    top: 20%;
+    //height: 4%;
+}
+
+#content {
+    padding: 2%;
+    border: thin solid lightGray;
+    background: #ffffff;
+
+    position: absolute;
+    right: 12%;
+    left: 15%;
+    top: 26%;
+    height: 80%;
+}
+
+.slogan{
+    color: #eb8a14;
+    font-size:32px;
+    padding-left:20px;
+    font-family:Tahoma;
+}
+.name{
+    height:25px;
+    color: #71ae38;
+}
