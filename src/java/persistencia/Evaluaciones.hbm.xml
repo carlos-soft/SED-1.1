@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-jun-2014 18:23:17 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="persistencia.Evaluaciones" table="evaluaciones" catalog="SED">
+        <id name="idEvaluacion" type="java.lang.Integer">
+            <column name="idEvaluacion" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="fechaInicio" type="string">
+            <column name="fechaInicio" length="45" not-null="true" />
+        </property>
+        <property name="fechaFin" type="string">
+            <column name="fechaFin" length="45" not-null="true" />
+        </property>
+        <property name="year" type="int">
+            <column name="year" not-null="true" />
+        </property>
+        <property name="lenguaje" type="string">
+            <column name="lenguaje" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

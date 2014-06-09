@@ -9,5 +9,13 @@
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
         </el-resolver>
     </application>
-    
+    <managed-bean>
+        <managed-bean-name>evaluacionBean</managed-bean-name>
+        <managed-bean-class>jsf.beans.EvaluacionBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <property-name>evaluacionBO</property-name>
+            <value>#{evaluacionBO}</value>
+        </managed-property>
+    </managed-bean>
 </faces-config>

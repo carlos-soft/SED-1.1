@@ -27,11 +27,11 @@
 
     <context:annotation-config/>
     
-    <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/sed-1.1"/>
+        <property name="url" value="jdbc:mysql://25.141.220.174:3306/sed"/>
         <property name="username" value="root"/>
-        <property name="password" value="mysql"/>
+        <!--<property name="password" value="mysql"/>-->
     </bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource">
@@ -44,6 +44,20 @@
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
-    </bean>-->
+        <property name="mappingResources">
+            <list>
+                <value>/persistencia/Evaluaciones.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+    <!-- DAO's -->
+    <bean id="evaluacionDAO" class="jdbc.dao.ImpEvaluacion">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <!-- BO's -->
+    <bean id="evaluacionBO" class="bo.EvaluacionImpBO">
+        <property name="evaluacionDAO" ref="evaluacionDAO"></property>
+    </bean>
     
 </beans>
