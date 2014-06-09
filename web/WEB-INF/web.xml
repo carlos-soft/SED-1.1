@@ -16,7 +16,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
-    
+    <!-- Configurar el tema para PrimeFaces --> 
     <context-param>  
         <param-name>primefaces.THEME</param-name>  
         <param-value>start</param-value>  
