@@ -1,14 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <faces-config version="2.2"
-    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <!-- Configurar JSF con Spring -->
     <application>
         <el-resolver>
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
         </el-resolver>
     </application>
+    
+    <!-- ManagedBeans -->
     <managed-bean>
         <managed-bean-name>evaluacionBean</managed-bean-name>
         <managed-bean-class>jsf.beans.EvaluacionBean</managed-bean-class>
@@ -18,4 +20,5 @@
             <value>#{evaluacionBO}</value>
         </managed-property>
     </managed-bean>
+   
 </faces-config>
