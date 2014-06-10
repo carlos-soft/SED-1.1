@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-jun-2014 18:23:17 by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/06/2014 02:38:09 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="persistencia.Evaluaciones" table="evaluaciones" catalog="SED">
+    <class name="persistencia.Evaluaciones" table="evaluaciones" catalog="sed">
         <id name="idEvaluacion" type="java.lang.Integer">
             <column name="idEvaluacion" />
             <generator class="identity" />
         </id>
-        <property name="nombre" type="string">
-            <column name="nombre" length="45" not-null="true" />
-        </property>
         <property name="fechaInicio" type="string">
             <column name="fechaInicio" length="45" not-null="true" />
         </property>
@@ -22,6 +19,9 @@
         </property>
         <property name="lenguaje" type="string">
             <column name="lenguaje" length="20" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="15" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

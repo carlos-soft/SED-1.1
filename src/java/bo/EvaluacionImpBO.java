@@ -23,13 +23,13 @@ public class EvaluacionImpBO implements EvaluacionBO{
         evaluacion.setFechaFin(obj.getFechaFin());
         evaluacion.setYear(obj.getYear());
         evaluacion.setLenguaje(obj.getLenguaje());
-        evaluacion.setNombre(obj.getLenguaje()+" "+obj.getFechaInicio()+"-"+obj.getFechaFin()+" "+obj.getYear());
+        evaluacion.setEstado("desactivada");
         evaluacionDAO.insert(evaluacion);
     }
 
   
-    public List<EvaluacionBean> getAll() {
-        return null;
+    public List<Evaluaciones> getAll() {
+        return evaluacionDAO.getAll();
     }
     
 }

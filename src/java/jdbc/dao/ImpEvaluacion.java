@@ -13,7 +13,7 @@ public class ImpEvaluacion extends HibernateDaoSupport implements IFaceEvaluacio
 
     
     public List<Evaluaciones> getAll() {
-        return null;
+        return getHibernateTemplate().find("from Evaluaciones");
     }
     
 }

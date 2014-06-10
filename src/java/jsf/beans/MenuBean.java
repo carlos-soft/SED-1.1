@@ -2,7 +2,6 @@ package jsf.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 @ManagedBean
 @RequestScoped
@@ -19,6 +18,7 @@ public class MenuBean {
     
     public String despachador(String direccion){
         this.direccion = direccion;
+        System.out.println(direccion);
         return direccion;
     }
 }
