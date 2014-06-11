@@ -103,12 +103,17 @@ public class EvaluacionBean {
     
     public String insert(){
         evaluacionBO.insert(this);
+        getAll();
+        return "";
+    }
+    
+    public String delete(){
+        //alumnoBO.delete(this);
         return "";
     }
     
     @PostConstruct
     public void getAll(){
-        System.out.println("Entro al getAll() ");
         setLista(evaluacionBO.getAll());
         dataModel = new EvaluacionesDataModel(getLista());
     }
