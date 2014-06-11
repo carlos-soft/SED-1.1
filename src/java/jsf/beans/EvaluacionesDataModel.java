@@ -23,11 +23,9 @@ public class EvaluacionesDataModel extends ListDataModel<Evaluaciones>
                 return obj;
             }
         }
-
         return null;
     }
 
-  
     public Object getRowKey(Evaluaciones e) {
         return e.getIdEvaluacion();
     }

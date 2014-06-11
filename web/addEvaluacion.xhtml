@@ -13,14 +13,16 @@
             <ui:define name="content">
                 <div align="center">
                     <h:form>
-                        <p:panelGrid columns="2" style="margin-top:20px">
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        <p:panelGrid columns="2" style="margin-top:20px;">
                             <f:facet name="header">
                                 <p:row>
                                     <p:column colspan="2">Registro de Evaluacion</p:column>
                                 </p:row>
                             </f:facet>
                             <p:outputLabel>Fecha de Inicio:</p:outputLabel>
-                            <p:selectOneMenu id="fIncio" value="#{evaluacionBean.fechaInicio}">
+                            <p:selectOneMenu id="fIncio" value="#{evaluacionBean.fechaInicio}" required="true" 
+                                             requiredMessage="Se necesita especificar mes de inicio" >
                                 <f:selectItem itemLabel="-- INICIO --" itemValue="" />
                                 <f:selectItem itemLabel="Enero" itemValue="Enero" />
                                 <f:selectItem itemLabel="Febrero" itemValue="Febrero" />
@@ -36,7 +38,8 @@
                                 <f:selectItem itemLabel="Diciembre" itemValue="Diciembre" />
                             </p:selectOneMenu>
                             <p:outputLabel>Fecha de Fin:</p:outputLabel>
-                            <p:selectOneMenu id="fFin" value="#{evaluacionBean.fechaFin}">
+                            <p:selectOneMenu id="fFin" value="#{evaluacionBean.fechaFin}" required="true" 
+                                             requiredMessage="Se necesita especificar mes de fin">
                                 <f:selectItem itemLabel="-- FIN --" itemValue="" />
                                 <f:selectItem itemLabel="Enero" itemValue="Enero" />
                                 <f:selectItem itemLabel="Febrero" itemValue="Febrero" />
@@ -52,16 +55,21 @@
                                 <f:selectItem itemLabel="Diciembre" itemValue="Diciembre" />
                             </p:selectOneMenu>
                             <p:outputLabel>Año:</p:outputLabel>
-                            <p:inputText id="year" value="#{evaluacionBean.year}"></p:inputText>
+                            <p:inputText id="year" value="#{evaluacionBean.year}" required="true" 
+                                         validatorMessage="Año invalido">
+                                <f:validateLength minimum="4" maximum="4" />
+                            </p:inputText>
                             <p:outputLabel>Idioma:</p:outputLabel>
-                            <p:selectOneMenu id="idioma" value="#{evaluacionBean.lenguaje}">
+                            <p:selectOneMenu id="idioma" value="#{evaluacionBean.lenguaje}" required="true" 
+                                             requiredMessage="Se necesita especificar idioma">
                                 <f:selectItem itemLabel="-- IDIOMA --" itemValue="" />
                                 <f:selectItem itemLabel="INGLES" itemValue="Ingles" />
                                 <f:selectItem itemLabel="FRANCES" itemValue="Frances" />
                             </p:selectOneMenu>
                         </p:panelGrid>
                         <br/>
-                        <p:commandButton value="Guardar" icon="ui-icon-disk" action="#{evaluacionBean.insert}"/>
+                        <p:commandButton value="Guardar" icon="ui-icon-disk" 
+                                         action="#{evaluacionBean.insert}" validateClient="true"/>
                     </h:form>
                 </div>
             </ui:define>

@@ -12,9 +12,10 @@
         <ui:composition template="masterLayout.xhtml">
             <ui:define name="content">
                 <h:form id="form">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                     <p:contextMenu for="evaluaciones">
                         <p:menuitem value="View" update="evaluacionDetail" icon="ui-icon-search" oncomplete="PF('evaluacionDialog').show()"/>
-                        <p:menuitem value="Cambiar estado" update="evaluacionDetail" icon="ui-icon-refresh" />
+                        <p:menuitem value="Cambiar estado" update="evaluaciones" icon="ui-icon-refresh" actionListener="#{evaluacionBean.update}"/>
                         <p:menuitem value="Delete" update="evaluaciones" icon="ui-icon-close" actionListener="#{evaluacionBean.delete}"/>
                     </p:contextMenu>
 
@@ -27,13 +28,13 @@
                             <h:outputText value="#{obj.lenguaje}" />
                         </p:column>
                        <p:column headerText="Evaluacion">
-                           <h:outputText value="#{obj.fechaInicio} - #{obj.fechaInicio}" />
+                           <h:outputText value="#{obj.fechaInicio} - #{obj.fechaFin}" />
                         </p:column>
                         <p:column headerText="Year">
                             <h:outputText value="#{obj.year}" />
                         </p:column>
-                        <p:column headerText="Estado">
-                            <h:outputText value="#{obj.estado}" />
+                        <p:column headerText="Estado" >
+                            <h:outputText value="#{obj.estado}" styleClass="#{obj.estado eq 'activada' ? 'activado' : null}"/>
                         </p:column>
                     </p:dataTable>
 

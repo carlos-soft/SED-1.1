@@ -11,7 +11,6 @@
     <h:body>
         <ui:composition>
                 <h:form> 
-                    <p:growl id="messages"/>
                     <p:menubar>
                         <p:submenu label="Alumnos" icon="ui-icon-document">
                             <p:menuitem value="Aplicar Evaluacion" icon="ui-icon-contact"/>
@@ -19,8 +18,7 @@
 
                         <p:submenu label="Admin" icon="ui-icon-pencil">
                             <p:menuitem value="Crear Evaluacion" action="#{menuBean.despachador('addEvaluacion')}" icon="ui-icon-newwin" />
-                            <p:menuitem value="Ver Evaluaciones" url="#" icon="ui-icon-newwin" />
-                            <p:menuitem value="Activar Evaluacion" action="#{menuBean.despachador('estadoEvaluaciones')}" icon="ui-icon-newwin" />
+                            <p:menuitem value="Ver Evaluaciones" action="#{menuBean.despachador('estadoEvaluaciones')}" icon="ui-icon-newwin" />
                             <p:menuitem value="Lenguajes" url="#" icon="ui-icon-newwin" />
                             <p:menuitem value="Preguntas" url="#" icon="ui-icon-newwin" />
                         </p:submenu>

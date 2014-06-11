@@ -7,7 +7,6 @@ body{
     left: 15%;
     top: 4%;
 
-    //padding: 5px;
     height: 19%;
 
     margin-bottom: 4%;
@@ -50,4 +49,9 @@ body{
 #bienvenida{
     text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
         0 0 0.2em #87F
+}
+
+.activado{
+    color: #71ae38;
+    font-weight: bold;
 }

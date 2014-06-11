@@ -27,6 +27,7 @@
 
     <context:annotation-config/>
     
+    <!-- DataSource -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://25.141.220.174:3306/sed"/>
@@ -50,10 +51,12 @@
             </list>
         </property>
     </bean>
+    
     <!-- DAO's -->
     <bean id="evaluacionDAO" class="jdbc.dao.ImpEvaluacion">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    
     
     <!-- BO's -->
     <bean id="evaluacionBO" class="bo.EvaluacionImpBO">

@@ -23,10 +23,17 @@ public class EvaluacionImpBO implements EvaluacionBO{
         evaluacion.setFechaFin(obj.getFechaFin());
         evaluacion.setYear(obj.getYear());
         evaluacion.setLenguaje(obj.getLenguaje());
-        evaluacion.setEstado("desactivada");
+        evaluacion.setEstado("activada");
         evaluacionDAO.insert(evaluacion);
     }
-
+    
+    public void delete(Evaluaciones obj) {
+        evaluacionDAO.delete(obj);
+    }
+    
+    public void update(Evaluaciones obj) {
+        evaluacionDAO.update(obj);
+    }
   
     public List<Evaluaciones> getAll() {
         return evaluacionDAO.getAll();

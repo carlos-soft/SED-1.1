@@ -3,7 +3,8 @@ package jsf.beans;
 import bo.EvaluacionImpBO;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import org.primefaces.event.SelectEvent;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import persistencia.Evaluaciones;
 
 public class EvaluacionBean {
@@ -50,7 +51,7 @@ public class EvaluacionBean {
     public void setYear(int year) {
         this.year = year;
     }
-    
+
     public String getLenguaje() {
         return lenguaje;
     }
@@ -78,7 +79,7 @@ public class EvaluacionBean {
     public EvaluacionesDataModel getDataModel() {
         return dataModel;
     }
-    
+
     public EvaluacionImpBO getEvaluacionBO() {
         return evaluacionBO;
     }
@@ -94,28 +95,39 @@ public class EvaluacionBean {
     public void setSelectedEvaluacion(Evaluaciones selectedEvaluacion) {
         this.selectedEvaluacion = selectedEvaluacion;
     }
-    
-    public void onRowSelect(SelectEvent event) {
-        /*FacesMessage msg = new FacesMessage("Car Selected", ((Car) event.getObject()).getId());
-        FacesContext.getCurrentInstance().addMessage(null, msg);*/
-        System.out.println("Hola Mundo...");
+
+    public String insert() {
+        try {
+            evaluacionBO.insert(this);
+            getAll();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "La evaluacion fue registrada satisfactoriamente."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "Ocurrio un error con el registro."));
+        }
+        return "";
     }
-    
-    public String insert(){
-        evaluacionBO.insert(this);
+
+    public String delete() {
+        try {
+            evaluacionBO.delete(selectedEvaluacion);
+            getAll();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "La evaluacion fue eliminada satisfactoriamente."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error con a la hora de eliminar el registro."));
+        }
+        return "";
+    }
+
+    public String update() {
+        evaluacionBO.update(selectedEvaluacion);
         getAll();
         return "";
     }
-    
-    public String delete(){
-        //alumnoBO.delete(this);
-        return "";
-    }
-    
+
     @PostConstruct
-    public void getAll(){
+    public void getAll() {
         setLista(evaluacionBO.getAll());
         dataModel = new EvaluacionesDataModel(getLista());
     }
-    
+
 }
