@@ -18,7 +18,6 @@ public class MenuBean {
     
     public String despachador(String direccion){
         this.direccion = direccion;
-        System.out.println(direccion);
         return direccion;
     }
 }

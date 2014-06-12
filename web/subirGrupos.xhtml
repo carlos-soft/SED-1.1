@@ -12,11 +12,8 @@
         <ui:composition template="masterLayout.xhtml">
             <ui:define name="content">
                 <h:form enctype="multipart/form-data">
-                    <p:growl id="messages" showDetail="true" />
-
-                    <p:fileUpload value="#{subirArchivoBean.file}" mode="simple" disabled="true" />
-
-                    <p:commandButton value="Submit" ajax="true" actionListener="#{subirArchivoBean.upload}"/>
+                    <p:fileUpload fileUploadListener="#{subirArchivoBean.update}" label="Seleccionar Archivo.."
+                                  mode="advanced" uploadLabel="Subir al servidor"/>
                 </h:form>
             </ui:define>
         </ui:composition>
