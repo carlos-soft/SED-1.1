@@ -14,23 +14,11 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+import persistencia.Evaluaciones;
 
 @ManagedBean
 @RequestScoped
 public class SubirArchivoBean {
-
-    private UploadedFile file;
-
-    public SubirArchivoBean() {
-    }
-
-    public UploadedFile getFile() {
-        return file;
-    }
-
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
 
     public void update(FileUploadEvent event) {
         try {
@@ -61,6 +49,10 @@ public class SubirArchivoBean {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public Evaluaciones getEvaluacionActiva(){
+        return null;
     }
 }
 

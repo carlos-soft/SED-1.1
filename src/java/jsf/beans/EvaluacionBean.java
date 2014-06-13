@@ -1,10 +1,13 @@
 package jsf.beans;
 
 import bo.EvaluacionImpBO;
+import java.io.File;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import persistencia.Evaluaciones;
 
 public class EvaluacionBean {
@@ -97,12 +100,20 @@ public class EvaluacionBean {
     }
 
     public String insert() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ServletContext context = ((HttpServletRequest) ctx.getExternalContext().getRequest()).getSession().getServletContext();
+        String path = context.getRealPath("grupos");
+        path = path.replace("\\", "\\\\");
+        path += "\\\\";
         try {
             evaluacionBO.insert(this);
             getAll();
+            File f = new File(path+lenguaje+fechaInicio+fechaFin);
+            f.mkdir();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "La evaluacion fue registrada satisfactoriamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "Ocurrio un error con el registro."));
+            e.printStackTrace();
         }
         return "";
     }
