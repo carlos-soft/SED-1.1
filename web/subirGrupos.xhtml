@@ -11,9 +11,15 @@
     <h:body>
         <ui:composition template="masterLayout.xhtml">
             <ui:define name="content">
+                <h:form>
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                    <p:commandButton value="Ver Evaluacion Activa" action="#{subirArchivoBean.publicarMensaje}"/>
+                </h:form>
                 <h:form enctype="multipart/form-data">
+
                     <p:fileUpload fileUploadListener="#{subirArchivoBean.update}" label="Seleccionar Archivo.."
-                                  mode="advanced" uploadLabel="Subir al servidor"/>
+                                  mode="advanced" uploadLabel="Enviar Archivos"/>
+
                 </h:form>
             </ui:define>
         </ui:composition>

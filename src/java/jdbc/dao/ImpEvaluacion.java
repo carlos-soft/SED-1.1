@@ -46,4 +46,8 @@ public class ImpEvaluacion extends HibernateDaoSupport implements IFaceEvaluacio
         return getHibernateTemplate().find("from Evaluaciones");
     }
 
+    public List<Evaluaciones> getEvaluacionActiva() {
+        return getHibernateTemplate().find("from Evaluaciones where estado='activada'");
+    }
+
 }

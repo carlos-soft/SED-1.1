@@ -22,7 +22,7 @@ public class EvaluacionBean {
     private List<Evaluaciones> lista;
     private Evaluaciones selectedEvaluacion;
     private EvaluacionesDataModel dataModel;
-
+ 
     public String getIdEvaluacion() {
         return idEvaluacion;
     }

@@ -38,5 +38,10 @@ public class EvaluacionImpBO implements EvaluacionBO{
     public List<Evaluaciones> getAll() {
         return evaluacionDAO.getAll();
     }
+
+    public List<Evaluaciones> getEvaluacionActiva() {
+        return evaluacionDAO.getEvaluacionActiva();
+    }
     
+
 }
