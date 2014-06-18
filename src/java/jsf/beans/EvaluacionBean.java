@@ -110,7 +110,7 @@ public class EvaluacionBean {
             getAll();
             File f = new File(path+lenguaje+fechaInicio+fechaFin);
             f.mkdir();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "La evaluacion fue registrada satisfactoriamente."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "La evaluacion fue registrada correctamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "Ocurrio un error con el registro."));
             e.printStackTrace();
@@ -122,7 +122,7 @@ public class EvaluacionBean {
         try {
             evaluacionBO.delete(selectedEvaluacion);
             getAll();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "La evaluacion fue eliminada satisfactoriamente."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "La evaluacion fue eliminada correctamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error con a la hora de eliminar el registro."));
         }

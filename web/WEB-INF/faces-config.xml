@@ -28,6 +28,10 @@
             <property-name>evaluacionBO</property-name>
             <value>#{evaluacionBO}</value>
         </managed-property>
+        <managed-property>
+            <property-name>docentesBO</property-name>
+            <value>#{docentesBO}</value>
+        </managed-property>
     </managed-bean>
    
 </faces-config>

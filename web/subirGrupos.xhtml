@@ -16,10 +16,9 @@
                     <p:commandButton value="Ver Evaluacion Activa" action="#{subirArchivoBean.publicarMensaje}"/>
                 </h:form>
                 <h:form enctype="multipart/form-data">
-
-                    <p:fileUpload fileUploadListener="#{subirArchivoBean.update}" label="Seleccionar Archivo.."
-                                  mode="advanced" uploadLabel="Enviar Archivos"/>
-
+                    <p:fileUpload fileUploadListener="#{subirArchivoBean.handleFileUpload}" label="Seleccionar Archivo.."
+                                  mode="advanced" uploadLabel="Enviar Archivos" multiple="true">
+                    </p:fileUpload>
                 </h:form>
             </ui:define>
         </ui:composition>

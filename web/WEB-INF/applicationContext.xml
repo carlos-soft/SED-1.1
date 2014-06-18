@@ -48,6 +48,8 @@
         <property name="mappingResources">
             <list>
                 <value>/persistencia/Evaluaciones.hbm.xml</value>
+                <value>/persistencia/Docentes.hbm.xml</value>
+                <value>/persistencia/Grupos.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -56,11 +58,23 @@
     <bean id="evaluacionDAO" class="jdbc.dao.ImpEvaluacion">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    <bean id="docentesDAO" class="jdbc.dao.ImpDocentes">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="gruposDAO" class="jdbc.dao.ImpGrupos">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
     
     
     <!-- BO's -->
     <bean id="evaluacionBO" class="bo.EvaluacionImpBO">
         <property name="evaluacionDAO" ref="evaluacionDAO"></property>
+    </bean>
+    <bean id="docentesBO" class="bo.DocentesImpBO">
+        <property name="docentesDAO" ref="docentesDAO"></property>
+    </bean>
+    <bean id="gruposBO" class="bo.GruposImpBO">
+        <property name="gruposDAO" ref="gruposDAO"></property>
     </bean>
     
 </beans>
