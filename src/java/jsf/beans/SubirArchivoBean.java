@@ -83,7 +83,7 @@ public class SubirArchivoBean {
     
     public void handleFileUpload(FileUploadEvent event) {
         try {
-            //copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
+            copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_INFO, "Listo...", "Registro exitoso."));
         } catch (Exception e) {
@@ -170,8 +170,9 @@ public class SubirArchivoBean {
                 }   
 
             }
-            claves.clear();
-            nombres.clear();
+            insert();
+            //claves.clear();
+            //nombres.clear();
             /*System.out.println("Grupo:" + grupo);
              System.out.println("Materia:" + materia);
              System.out.println("Profesor:" + profesor);
@@ -180,7 +181,6 @@ public class SubirArchivoBean {
              System.out.println(claves.get(i) + " " + nombres.get(i));
 
              }*/
-            insert();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
