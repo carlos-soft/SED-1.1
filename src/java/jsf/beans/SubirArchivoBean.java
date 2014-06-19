@@ -34,7 +34,7 @@ public class SubirArchivoBean {
     public void publicarMensaje() {
         activa = evaluacionBO.getEvaluacionActiva().get(0);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                FacesMessage.SEVERITY_WARN, activa.getLenguaje() + " " + activa.getFechaInicio() + "-" + activa.getFechaFin(), ". Es la Evaluacion Actualemnte Activa."));
+                FacesMessage.SEVERITY_WARN, activa.getLenguaje() + " " + activa.getFechaInicio() + "-" + activa.getFechaFin(), "Es la Evaluacion Actualemnte Activa."));
     }
 
     public EvaluacionImpBO getEvaluacionBO() {
