@@ -1,5 +1,5 @@
 package persistencia;
-// Generated 18-jun-2014 19:54:35 by Hibernate Tools 3.2.1.GA
+// Generated 18/06/2014 09:14:16 PM by Hibernate Tools 3.6.0
 
 
 
@@ -9,7 +9,7 @@ package persistencia;
 public class Grupos  implements java.io.Serializable {
 
 
-     private int idGrupo;
+     private Integer idGrupo;
      private String nombre;
      private int idDocente;
      private int nivel;
@@ -18,19 +18,18 @@ public class Grupos  implements java.io.Serializable {
     public Grupos() {
     }
 
-    public Grupos(int idGrupo, String nombre, int idDocente, int nivel, int idEvaluacion) {
-       this.idGrupo = idGrupo;
+    public Grupos(String nombre, int idDocente, int nivel, int idEvaluacion) {
        this.nombre = nombre;
        this.idDocente = idDocente;
        this.nivel = nivel;
        this.idEvaluacion = idEvaluacion;
     }
    
-    public int getIdGrupo() {
+    public Integer getIdGrupo() {
         return this.idGrupo;
     }
     
-    public void setIdGrupo(int idGrupo) {
+    public void setIdGrupo(Integer idGrupo) {
         this.idGrupo = idGrupo;
     }
     public String getNombre() {
