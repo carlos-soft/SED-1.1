@@ -50,6 +50,7 @@
                 <value>/persistencia/Evaluaciones.hbm.xml</value>
                 <value>/persistencia/Docentes.hbm.xml</value>
                 <value>/persistencia/Grupos.hbm.xml</value>
+                <value>/persistencia/Alumnos.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -64,6 +65,9 @@
     <bean id="gruposDAO" class="jdbc.dao.ImpGrupos">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    <bean id="alumnosDAO" class="jdbc.dao.ImpAlumnos">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
     
     
     <!-- BO's -->
@@ -75,6 +79,9 @@
     </bean>
     <bean id="gruposBO" class="bo.GruposImpBO">
         <property name="gruposDAO" ref="gruposDAO"></property>
+    </bean>
+    <bean id="alumnosBO" class="bo.AlumnosImpBO">
+        <property name="alumnosDAO" ref="alumnosDAO"></property>
     </bean>
     
 </beans>

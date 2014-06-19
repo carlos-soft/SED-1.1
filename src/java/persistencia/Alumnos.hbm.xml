@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/06/2014 10:14:32 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="persistencia.Alumnos" table="alumnos" catalog="sed">
+        <id name="idAlumno" type="java.lang.Integer">
+            <column name="idAlumno" />
+            <generator class="identity" />
+        </id>
+        <property name="idEvaluacion" type="int">
+            <column name="idEvaluacion" not-null="true" />
+        </property>
+        <property name="idGrupo" type="int">
+            <column name="idGrupo" not-null="true" />
+        </property>
+        <property name="control" type="string">
+            <column name="control" length="45" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

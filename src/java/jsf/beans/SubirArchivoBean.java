@@ -1,5 +1,6 @@
 package jsf.beans;
 
+import bo.AlumnosImpBO;
 import bo.DocentesImpBO;
 import bo.EvaluacionImpBO;
 import bo.GruposImpBO;
@@ -25,11 +26,12 @@ public class SubirArchivoBean {
     private EvaluacionImpBO evaluacionBO;
     private DocentesImpBO docentesBO;
     private GruposImpBO gruposBO;
+    private AlumnosImpBO alumnosBO;
     private Evaluaciones activa;
     String etiquetas[] = {"GRUPO:", "MATERIA:", "PROFESOR:", "NIVEL:", "CLAVE", "NOMBRE DEL ALUMNO"};
     String grupo, materia, profesor, nivel;
-    List<String> claves = new ArrayList<String>();
-    List<String> nombres = new ArrayList<String>();
+    List<String> claves;
+    List<String> nombres;
 
     public void publicarMensaje() {
         activa = evaluacionBO.getEvaluacionActiva().get(0);
@@ -61,6 +63,14 @@ public class SubirArchivoBean {
         this.gruposBO = gruposBO;
     }
 
+    public AlumnosImpBO getAlumnosBO() {
+        return alumnosBO;
+    }
+
+    public void setAlumnosBO(AlumnosImpBO alumnosBO) {
+        this.alumnosBO = alumnosBO;
+    }
+
     public Evaluaciones getActiva() {
         return activa;
     }
@@ -80,7 +90,15 @@ public class SubirArchivoBean {
     public String getMateria() {
         return materia;
     }
-    
+
+    public List<String> getClaves() {
+        return claves;
+    }
+
+    public List<String> getNombres() {
+        return nombres;
+    }
+
     public void handleFileUpload(FileUploadEvent event) {
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
@@ -99,7 +117,6 @@ public class SubirArchivoBean {
         path += "\\\\";
         path += activa.getLenguaje() + activa.getFechaInicio() + activa.getFechaFin() + "\\\\" + fileName;
         try {
-            System.out.println(path);
             File f = new File(path);
             OutputStream out = new FileOutputStream(f);
             int read = 0;
@@ -124,6 +141,8 @@ public class SubirArchivoBean {
             Cell clav[] = null;
             Cell nom[] = null;
             Sheet hoja = null;
+            claves = new ArrayList<String>();
+            nombres = new ArrayList<String>();
             for (int sheetNo = 0; sheetNo < archivoExcel.getNumberOfSheets(); sheetNo++) {
                 hoja = archivoExcel.getSheet(sheetNo);
                 for (int i = 0; i < etiquetas.length; i++) {
@@ -165,22 +184,11 @@ public class SubirArchivoBean {
                                 }
                             }
                         }
-
                     }
-                }   
+                }
 
             }
             insert();
-            //claves.clear();
-            //nombres.clear();
-            /*System.out.println("Grupo:" + grupo);
-             System.out.println("Materia:" + materia);
-             System.out.println("Profesor:" + profesor);
-             System.out.println("Nivel:" + nivel);
-             for (int i = 0; i < nombres.size(); i++) {
-             System.out.println(claves.get(i) + " " + nombres.get(i));
-
-             }*/
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -190,6 +198,7 @@ public class SubirArchivoBean {
         try {
             docentesBO.insert(this);
             gruposBO.insert(this);
+            alumnosBO.insert(this);
         } catch (Exception e) {
             e.printStackTrace();
         }

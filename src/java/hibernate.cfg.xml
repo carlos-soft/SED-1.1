@@ -9,5 +9,6 @@
     <mapping resource="persistencia/Docentes.hbm.xml"/>
     <mapping resource="persistencia/Grupos.hbm.xml"/>
     <mapping resource="persistencia/Evaluaciones.hbm.xml"/>
+    <mapping resource="persistencia/Alumnos.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
