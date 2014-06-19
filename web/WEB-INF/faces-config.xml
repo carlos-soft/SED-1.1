@@ -32,6 +32,10 @@
             <property-name>docentesBO</property-name>
             <value>#{docentesBO}</value>
         </managed-property>
+        <managed-property>
+            <property-name>gruposBO</property-name>
+            <value>#{docentesBO}</value>
+        </managed-property
     </managed-bean>
    
 </faces-config>
