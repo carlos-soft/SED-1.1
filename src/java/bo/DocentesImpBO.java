@@ -19,9 +19,7 @@ public class DocentesImpBO implements DocentesBO{
     
     public void insert(SubirArchivoBean obj) {
         Docentes d = new Docentes();
-        d.setNombre(obj.getProfesor().split(" ")[0]);
-        d.setApaterno(obj.getProfesor().split(" ")[1]);
-        d.setAmaterno(obj.getProfesor().split(" ")[2]);
+        d.setNombre(obj.getProfesor());
         docentesDAO.insert(d);
     }
  

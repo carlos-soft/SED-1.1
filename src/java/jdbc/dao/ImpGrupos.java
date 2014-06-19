@@ -12,8 +12,8 @@ public class ImpGrupos extends HibernateDaoSupport implements IFaceGrupos{
     public void insert(Grupos obj, String docente) {
         Evaluaciones e = (Evaluaciones) getHibernateTemplate().find("from Evaluaciones where estado='activada'").get(0);
         obj.setIdEvaluacion(e.getIdEvaluacion());
-        Docentes d = (Docentes) getHibernateTemplate().find("from Docentes where nombre='"+docente.split(" ")[0]+
-                "' and aPaterno='"+docente.split(" ")[1]+"' and aMaterno='"+docente.split(" ")[2]+"'").get(0);
+        Docentes d = (Docentes) getHibernateTemplate().find("from Docentes where nombre='"+docente+"'").get(0);
+        System.out.println(d.getIdDocente());
         obj.setIdDocente(d.getIdDocente());
         getHibernateTemplate().save(obj);
     }
