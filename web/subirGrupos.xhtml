@@ -11,8 +11,12 @@
     <h:body onload="#{subirArchivoBean.publicarMensaje()}">
         <ui:composition template="masterLayout.xhtml">
             <ui:define name="content">
-                <h:form enctype="multipart/form-data">
+                <h:form>
                     <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                    <p:commandButton action="#{subirArchivoBean.publicarMensaje()}" value="Ver Evaluacion Actual"/>
+                </h:form>
+                <h:form enctype="multipart/form-data">
+                    
                     <p:fileUpload fileUploadListener="#{subirArchivoBean.handleFileUpload}" label="Seleccionar Archivo.."
                                   mode="advanced" uploadLabel="Enviar Archivos" multiple="false">
                     </p:fileUpload>
