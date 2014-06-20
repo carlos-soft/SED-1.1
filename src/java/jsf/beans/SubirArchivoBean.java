@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -20,6 +21,8 @@ import jxl.Sheet;
 import jxl.Workbook;
 import org.primefaces.event.FileUploadEvent;
 import persistencia.Evaluaciones;
+import persistencia.Grupos;
+import persistencia.GruposJoinDocentes;
 
 public class SubirArchivoBean {
 
@@ -32,6 +35,9 @@ public class SubirArchivoBean {
     String grupo, materia, profesor, nivel;
     List<String> claves;
     List<String> nombres;
+    private List<GruposJoinDocentes> lista;
+    private Grupos selectedGrupo;
+    private GruposDataModel dataModel;
 
     public void publicarMensaje() {
         activa = evaluacionBO.getEvaluacionActiva().get(0);
@@ -99,6 +105,26 @@ public class SubirArchivoBean {
         return nombres;
     }
 
+    public List<GruposJoinDocentes> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<GruposJoinDocentes> lista) {
+        this.lista = lista;
+    }
+
+    public Grupos getSelectedGrupo() {
+        return selectedGrupo;
+    }
+
+    public void setSelectedGrupo(Grupos selectedGrupo) {
+        this.selectedGrupo = selectedGrupo;
+    }
+    
+    public GruposDataModel getDataModel() {
+        return dataModel;
+    }
+    
     public void handleFileUpload(FileUploadEvent event) {
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
@@ -203,6 +229,23 @@ public class SubirArchivoBean {
             e.printStackTrace();
         }
 
+    }
+    
+    @PostConstruct
+    public void getAllGrupos() {
+        setLista(gruposBO.getAll());
+        dataModel = new GruposDataModel(getLista());
+    }
+    
+    public String deleteGrupo() {
+        try {
+            gruposBO.delete(selectedGrupo);
+            getAllGrupos();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "El grupo fue eliminado correctamente."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
+        }
+        return "";
     }
 
 }

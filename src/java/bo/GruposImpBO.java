@@ -3,8 +3,8 @@ package bo;
 import java.util.List;
 import jdbc.dao.ImpGrupos;
 import jsf.beans.SubirArchivoBean;
-import persistencia.Docentes;
 import persistencia.Grupos;
+import persistencia.GruposJoinDocentes;
 
 public class GruposImpBO implements GruposBO{
 
@@ -25,8 +25,13 @@ public class GruposImpBO implements GruposBO{
         gruposDAO.insert(g, obj.getProfesor()); 
     }
     
-    public List<Docentes> getAll() {
-        return null;
+    public List<GruposJoinDocentes> getAll() {
+        return gruposDAO.getAll();
     }
+
     
+    public void delete(Grupos obj) {
+        gruposDAO.delete(obj);
+    }
+
 }
