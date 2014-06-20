@@ -101,8 +101,7 @@ public class SubirArchivoBean {
 
     public void handleFileUpload(FileUploadEvent event) {
         try {
-            System.out.println(event.getFile().getFileName());
-            //copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
+            copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_INFO, "Listo...", "Registro exitoso."));
         } catch (Exception e) {
