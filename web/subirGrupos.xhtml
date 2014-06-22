@@ -19,7 +19,6 @@
                     <p:fileUpload fileUploadListener="#{subirArchivoBean.handleFileUpload}" label="Seleccionar Archivo.."
                                   mode="advanced" uploadLabel="Enviar Archivo" multiple="false" update="grupos">
                     </p:fileUpload>
-                    
                     <p:contextMenu for="grupos">
                         <p:menuitem value="View" update="grupoDetail" icon="ui-icon-search" oncomplete="PF('grupoDialog').show()"/>
                         <p:menuitem value="Delete" update="grupos" icon="ui-icon-close" actionListener="#{subirArchivoBean.deleteGrupo}"/>
@@ -32,8 +31,8 @@
                         <p:column headerText="Nombre">
                             <h:outputText value="#{obj.nombre}" />
                         </p:column>
-                       <p:column headerText="Docente">
-                           <h:outputText value="#{obj.docente}" />
+                        <p:column headerText="Docente">
+                            <h:outputText value="#{obj.docente}" />
                         </p:column>
                         <p:column headerText="Nivel">
                             <h:outputText value="#{obj.nivel}" />
@@ -49,7 +48,7 @@
 
                                 <h:outputText value="Nombre:" />
                                 <h:outputText value="#{subirArchivoBean.selectedGrupo.nombre}" />
-                                
+
                                 <h:outputText value="Docente:" />
                                 <h:outputText value="#{subirArchivoBean.selectedGrupo.docente}" />
 

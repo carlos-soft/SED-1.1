@@ -126,7 +126,8 @@ public class SubirArchivoBean {
 
     public void handleFileUpload(FileUploadEvent event) {
         try {
-            copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
+            System.out.println(event.getComponent());
+            //copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_INFO, "Listo...", "Registro exitoso."));
         } catch (Exception e) {
@@ -239,13 +240,13 @@ public class SubirArchivoBean {
     }
 
     public String deleteGrupo() {
-        /*try {
-         gruposBO.delete(selectedGrupo);
-         getAllGrupos();
-         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "El grupo fue eliminado correctamente."));
-         } catch (Exception e) {
-         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
-         }*/
+        try {
+            gruposBO.delete(selectedGrupo);
+            getAllGrupos();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "El grupo fue eliminado correctamente."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
+        }
         return "";
     }
 }

@@ -30,8 +30,10 @@ public class GruposImpBO implements GruposBO{
     }
 
     
-    public void delete(Grupos obj) {
-        gruposDAO.delete(obj);
+    public void delete(GruposJoinDocentes obj) {
+        Grupos g = new Grupos();
+        g.setIdGrupo(obj.getIdDocente());
+        gruposDAO.delete(g);
     }
 
 }
