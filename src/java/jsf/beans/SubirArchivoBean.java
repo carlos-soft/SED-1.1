@@ -225,6 +225,7 @@ public class SubirArchivoBean {
             docentesBO.insert(this);
             gruposBO.insert(this);
             alumnosBO.insert(this);
+            getAllGrupos();
         } catch (Exception e) {
             e.printStackTrace();
         }
