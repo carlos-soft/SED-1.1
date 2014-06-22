@@ -48,14 +48,22 @@ public class ImpGrupos extends HibernateDaoSupport implements IFaceGrupos {
                 l.add(g);
             }
             tx.commit();
+            session.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return l;
     }
 
-    public void delete(Grupos obj) {
-        getHibernateTemplate().delete(obj);
+    public void delete(GruposJoinDocentes obj) {
+        Session session = getHibernateTemplate().getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String hqlUpdate = "delete Grupos where idGrupo = :idGrupo";
+        int updated = session.createQuery(hqlUpdate)
+                .setInteger("idGrupo", obj.getIdGrupo())
+                .executeUpdate();
+        tx.commit();
+        session.close();
     }
 
 }

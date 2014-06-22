@@ -10,26 +10,28 @@
     </h:head>
     <h:body onload="#{subirArchivoBean.publicarMensaje()}">
         <ui:composition template="masterLayout.xhtml">
-            <ui:define name="content">
+            <ui:define name="content">                
                 <h:form>
                     <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
                     <p:commandButton action="#{subirArchivoBean.publicarMensaje()}" value="Ver Evaluacion Actual"/>
                 </h:form>
-                <h:form enctype="multipart/form-data">
+                <h:form id="form1" enctype="multipart/form-data">
                     <p:fileUpload fileUploadListener="#{subirArchivoBean.handleFileUpload}" label="Seleccionar Archivo.."
-                                  mode="advanced" uploadLabel="Enviar Archivo" multiple="false" update="grupos">
+                                  mode="advanced" uploadLabel="Enviar Archivo" multiple="false" update="@form :gruposForm:grupos">
                     </p:fileUpload>
+                </h:form><br/>
+                <h:form id="gruposForm">
                     <p:contextMenu for="grupos">
                         <p:menuitem value="View" update="grupoDetail" icon="ui-icon-search" oncomplete="PF('grupoDialog').show()"/>
                         <p:menuitem value="Delete" update="grupos" icon="ui-icon-close" actionListener="#{subirArchivoBean.deleteGrupo}"/>
                     </p:contextMenu>
                     <p:dataTable id="grupos" var="obj" value="#{subirArchivoBean.dataModel}" rowKey="#{obj.idGrupo}"
-                                 selection="#{subirArchivoBean.selectedGrupo}" selectionMode="single">
+                                 selection="#{subirArchivoBean.selectedGrupo}" selectionMode="single" >
                         <f:facet name="header">
                             Grupos
                         </f:facet>
                         <p:column headerText="Nombre">
-                            <h:outputText value="#{obj.nombre}" />
+                            <h:outputText value="#{obj.nombre}" styleClass="nombreDelGrupo"/>
                         </p:column>
                         <p:column headerText="Docente">
                             <h:outputText value="#{obj.docente}" />

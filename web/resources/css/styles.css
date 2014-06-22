@@ -20,7 +20,6 @@ body{
     right: 12%;
     left: 15%;
     top: 20%;
-    //height: 4%;
 }
 
 #content {
@@ -51,7 +50,7 @@ body{
         0 0 0.2em #87F
 }
 
-.activado{
+.activado, .nombreDelGrupo{
     color: #71ae38;
     font-weight: bold;
 }

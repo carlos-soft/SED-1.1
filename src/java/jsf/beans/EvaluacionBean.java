@@ -122,7 +122,7 @@ public class EvaluacionBean {
         try {
             evaluacionBO.delete(selectedEvaluacion);
             getAll();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "La evaluacion fue eliminada correctamente."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "La evaluacion fue eliminada correctamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
         }

@@ -126,7 +126,7 @@ public class SubirArchivoBean {
 
     public void handleFileUpload(FileUploadEvent event) {
         try {
-            System.out.println(event.getComponent());
+            System.out.println(event.getFile().getContentType());
             //copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_INFO, "Listo...", "Registro exitoso."));
@@ -243,9 +243,10 @@ public class SubirArchivoBean {
         try {
             gruposBO.delete(selectedGrupo);
             getAllGrupos();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "El grupo fue eliminado correctamente."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "El grupo fue eliminado correctamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
+            e.printStackTrace();
         }
         return "";
     }
