@@ -120,11 +120,11 @@ public class SubirArchivoBean {
     public void setSelectedGrupo(GruposJoinDocentes selectedGrupo) {
         this.selectedGrupo = selectedGrupo;
     }
-    
+
     public GruposDataModel getDataModel() {
         return dataModel;
     }
-    
+
     public void handleFileUpload(FileUploadEvent event) {
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
@@ -230,22 +230,22 @@ public class SubirArchivoBean {
         }
 
     }
-    
+
     @PostConstruct
     public void getAllGrupos() {
         setLista(gruposBO.getAll());
+        System.out.println(lista.size());
         dataModel = new GruposDataModel(getLista());
     }
-    
+
     public String deleteGrupo() {
         /*try {
-            gruposBO.delete(selectedGrupo);
-            getAllGrupos();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "El grupo fue eliminado correctamente."));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
-        }*/
+         gruposBO.delete(selectedGrupo);
+         getAllGrupos();
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "El grupo fue eliminado correctamente."));
+         } catch (Exception e) {
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
+         }*/
         return "";
     }
-
 }

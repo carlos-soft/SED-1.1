@@ -29,7 +29,7 @@ public class ImpGrupos extends HibernateDaoSupport implements IFaceGrupos {
         List<GruposJoinDocentes> l = new ArrayList<>();
         try {
             Transaction tx = session.beginTransaction();
-            String sql = "SELECT g.idGrupo, g.nombre as grupo, d.idDocente, d.nombre as docente, g.nivel, g.idEvaluacion"
+            String sql = "SELECT g.idGrupo, g.nombre as grupo, d.idDocente, d.nombre as docente, g.nivel, g.idEvaluacion "
                     + "FROM Grupos g join Docentes d "
                     + "where g.idDocente = d.idDocente";
             SQLQuery query = session.createSQLQuery(sql);
