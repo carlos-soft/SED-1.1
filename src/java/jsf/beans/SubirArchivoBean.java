@@ -36,7 +36,7 @@ public class SubirArchivoBean {
     List<String> claves;
     List<String> nombres;
     private List<GruposJoinDocentes> lista;
-    private Grupos selectedGrupo;
+    private GruposJoinDocentes selectedGrupo;
     private GruposDataModel dataModel;
 
     public void publicarMensaje() {
@@ -113,11 +113,11 @@ public class SubirArchivoBean {
         this.lista = lista;
     }
 
-    public Grupos getSelectedGrupo() {
+    public GruposJoinDocentes getSelectedGrupo() {
         return selectedGrupo;
     }
 
-    public void setSelectedGrupo(Grupos selectedGrupo) {
+    public void setSelectedGrupo(GruposJoinDocentes selectedGrupo) {
         this.selectedGrupo = selectedGrupo;
     }
     
@@ -238,13 +238,13 @@ public class SubirArchivoBean {
     }
     
     public String deleteGrupo() {
-        try {
+        /*try {
             gruposBO.delete(selectedGrupo);
             getAllGrupos();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Exito !!", "El grupo fue eliminado correctamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
-        }
+        }*/
         return "";
     }
 
