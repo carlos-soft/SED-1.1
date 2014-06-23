@@ -54,3 +54,8 @@ body{
     color: #71ae38;
     font-weight: bold;
 }
+.noEvaluado{
+    background: #ff6666;
+    color: #ffffff;
+    font-weight: bold;
+}

@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -20,6 +21,7 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import org.primefaces.event.FileUploadEvent;
+import persistencia.Alumnos;
 import persistencia.Evaluaciones;
 import persistencia.GruposJoinDocentes;
 
@@ -37,6 +39,9 @@ public class SubirArchivoBean {
     private List<GruposJoinDocentes> lista;
     private GruposJoinDocentes selectedGrupo;
     private GruposDataModel dataModel;
+    private List<Alumnos> alumnosFromGroup;
+    private Map<String, Integer> evaluacionesList;
+    private int selectedEvaluacion;
 
     public void publicarMensaje() {
         activa = evaluacionBO.getEvaluacionActiva().get(0);
@@ -124,10 +129,34 @@ public class SubirArchivoBean {
         return dataModel;
     }
 
+    public List<Alumnos> getAlumnosFromGroup() {
+        return alumnosFromGroup;
+    }
+
+    public void setAlumnosFromGroup(List<Alumnos> alumnosFromGroup) {
+        this.alumnosFromGroup = alumnosFromGroup;
+    }
+
+    public Map<String, Integer> getEvaluacionesList() {
+        return evaluacionBO.getAllForAList();
+    }
+
+    @PostConstruct
+    public void setEvaluacionesList(Map<String, Integer> evaluacionesList) {
+        this.evaluacionesList = evaluacionesList;
+    }
+
+    public int getSelectedEvaluacion() {
+        return selectedEvaluacion;
+    }
+
+    public void setSelectedEvaluacion(int selectedEvaluacion) {
+        this.selectedEvaluacion = selectedEvaluacion;
+    }
+    
     public void handleFileUpload(FileUploadEvent event) {
         try {
-            System.out.println(event.getFile().getContentType());
-            //copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
+            copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_INFO, "Listo...", "Registro exitoso."));
         } catch (Exception e) {
@@ -238,6 +267,10 @@ public class SubirArchivoBean {
         System.out.println(lista.size());
         dataModel = new GruposDataModel(getLista());
     }
+    
+    public void obtenerAlumnosFromGroupId(){
+        setAlumnosFromGroup(alumnosBO.getAlumnosFromGroupId(selectedGrupo));
+    }
 
     public String deleteGrupo() {
         try {
@@ -249,5 +282,9 @@ public class SubirArchivoBean {
             e.printStackTrace();
         }
         return "";
+    }
+    
+    public void cambiarEvalaucionActual(){
+        System.out.println("Entro");
     }
 }

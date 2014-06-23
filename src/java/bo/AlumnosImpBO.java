@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import persistencia.Alumnos;
 import persistencia.Evaluaciones;
 import persistencia.Grupos;
+import persistencia.GruposJoinDocentes;
 
 public class AlumnosImpBO implements AlumnosBO {
 
@@ -38,12 +39,20 @@ public class AlumnosImpBO implements AlumnosBO {
             a.setNombre(obj.getNombres().get(i));
             a.setIdEvaluacion(evaluacion.getIdEvaluacion()); 
             a.setIdGrupo(grupo.getIdGrupo()); 
+            a.setEvaluado(false); 
             alumnosDAO.insert(a, obj.getMateria());
         }
     }
 
     public List<Alumnos> getAll() {
         return null;
+    }
+
+    public List<Alumnos> getAlumnosFromGroupId(GruposJoinDocentes obj) {
+        Grupos g = new Grupos();
+        g.setIdGrupo(obj.getIdGrupo());
+        g.setIdEvaluacion(obj.getIdEvaluacion());
+        return alumnosDAO.getAlumnosFromGroupId(g);
     }
 
 }

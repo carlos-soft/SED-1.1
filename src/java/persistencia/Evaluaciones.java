@@ -1,5 +1,5 @@
 package persistencia;
-// Generated 19/06/2014 10:14:32 AM by Hibernate Tools 3.6.0
+// Generated 23/06/2014 12:57:14 PM by Hibernate Tools 3.6.0
 
 
 

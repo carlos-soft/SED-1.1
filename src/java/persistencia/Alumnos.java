@@ -1,5 +1,5 @@
 package persistencia;
-// Generated 19/06/2014 10:14:32 AM by Hibernate Tools 3.6.0
+// Generated 23/06/2014 12:57:14 PM by Hibernate Tools 3.6.0
 
 
 
@@ -14,15 +14,17 @@ public class Alumnos  implements java.io.Serializable {
      private int idGrupo;
      private String control;
      private String nombre;
+     private boolean evaluado;
 
     public Alumnos() {
     }
 
-    public Alumnos(int idEvaluacion, int idGrupo, String control, String nombre) {
+    public Alumnos(int idEvaluacion, int idGrupo, String control, String nombre, boolean evaluado) {
        this.idEvaluacion = idEvaluacion;
        this.idGrupo = idGrupo;
        this.control = control;
        this.nombre = nombre;
+       this.evaluado = evaluado;
     }
    
     public Integer getIdAlumno() {
@@ -59,6 +61,13 @@ public class Alumnos  implements java.io.Serializable {
     
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public boolean isEvaluado() {
+        return this.evaluado;
+    }
+    
+    public void setEvaluado(boolean evaluado) {
+        this.evaluado = evaluado;
     }
 
 
