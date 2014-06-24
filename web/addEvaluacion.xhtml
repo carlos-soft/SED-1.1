@@ -23,7 +23,7 @@
                             <p:outputLabel>Fecha de Inicio:</p:outputLabel>
                             <p:selectOneMenu id="fIncio" value="#{evaluacionBean.fechaInicio}" required="true" 
                                              requiredMessage="Se necesita especificar mes de inicio" >
-                                <f:selectItem itemLabel="-- INICIO --" itemValue="" />
+                                <f:selectItem itemLabel="-- INICIO --" itemValue="" noSelectionOption="true"/>
                                 <f:selectItem itemLabel="Enero" itemValue="Enero" />
                                 <f:selectItem itemLabel="Febrero" itemValue="Febrero" />
                                 <f:selectItem itemLabel="Marzo" itemValue="Marzo" />
@@ -40,7 +40,7 @@
                             <p:outputLabel>Fecha de Fin:</p:outputLabel>
                             <p:selectOneMenu id="fFin" value="#{evaluacionBean.fechaFin}" required="true" 
                                              requiredMessage="Se necesita especificar mes de fin">
-                                <f:selectItem itemLabel="-- FIN --" itemValue="" />
+                                <f:selectItem itemLabel="-- FIN --" itemValue="" noSelectionOption="true"/>
                                 <f:selectItem itemLabel="Enero" itemValue="Enero" />
                                 <f:selectItem itemLabel="Febrero" itemValue="Febrero" />
                                 <f:selectItem itemLabel="Marzo" itemValue="Marzo" />
@@ -69,9 +69,52 @@
                         </p:panelGrid>
                         <br/>
                         <p:commandButton value="Guardar" icon="ui-icon-disk" 
-                                         action="#{evaluacionBean.insert}" validateClient="true"/>
+                                         action="#{evaluacionBean.insert}" validateClient="true" update="@form :form:evaluaciones"/>
                     </h:form>
-                </div>
+                </div><br/><br/>
+                <h:form id="form">
+                    <p:contextMenu for="evaluaciones">
+                        <p:menuitem value="Grupos" update="evaluacionDetail" icon="ui-icon-search" actionListener="#{evaluacionBean.obtenerGruposFromEvaluacion()}" oncomplete="PF('gruposDialog').show()"/>
+                        <p:menuitem value="Cambiar estado" update="evaluaciones" icon="ui-icon-refresh" actionListener="#{evaluacionBean.update}"/>
+                        <p:menuitem value="Eliminar" update="evaluaciones" icon="ui-icon-close" actionListener="#{evaluacionBean.delete}"/>
+                    </p:contextMenu>
+                    <p:dataTable id="evaluaciones" var="obj" value="#{evaluacionBean.dataModel}" rowKey="#{obj.idEvaluacion}"
+                                 selection="#{evaluacionBean.selectedEvaluacion}" selectionMode="single">
+                        <f:facet name="header">
+                            Evaluaciones
+                        </f:facet>
+                        <p:column headerText="Idioma" width="50" styleClass="#{obj.estado eq 'activada' ? 'activado' : null}">
+                            <h:outputText value="#{obj.lenguaje}" />
+                        </p:column>
+                        <p:column headerText="Evaluacion" width="170" styleClass="#{obj.estado eq 'activada' ? 'activado' : null}">
+                            <h:outputText value="#{obj.fechaInicio} - #{obj.fechaFin}" />
+                        </p:column>
+                        <p:column headerText="Year" width="40" styleClass="#{obj.estado eq 'activada' ? 'activado' : null}">
+                            <h:outputText value="#{obj.year}" />
+                        </p:column>
+                        <p:column headerText="Estado" width="50" styleClass="#{obj.estado eq 'activada' ? 'activado' : null}">
+                            <h:outputText value="#{obj.estado}" />
+                        </p:column>
+                    </p:dataTable>
+                    <p:dialog header="Grupos Info" widgetVar="gruposDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="500" width="630">
+                        <p:outputPanel id="evaluacionDetail">
+                            <p:dataTable id="grupos" var="obj" value="#{evaluacionBean.gruposLista}">
+                                <f:facet name="header">
+                                    Grupos
+                                </f:facet>
+                                <p:column headerText="Nombre" width="80">
+                                    <h:outputText value="#{obj.nombre}" styleClass="nombreDelGrupo"/>
+                                </p:column>
+                                <p:column headerText="Docente" width="350">
+                                    <h:outputText value="#{obj.docente}" />
+                                </p:column>
+                                <p:column headerText="Nivel" width="35">
+                                    <h:outputText value="#{obj.nivel}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

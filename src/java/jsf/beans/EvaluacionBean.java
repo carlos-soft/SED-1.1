@@ -1,6 +1,7 @@
 package jsf.beans;
 
 import bo.EvaluacionImpBO;
+import bo.GruposImpBO;
 import java.io.File;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import persistencia.Evaluaciones;
+import persistencia.GruposJoinDocentes;
 
 public class EvaluacionBean {
 
@@ -19,7 +21,9 @@ public class EvaluacionBean {
     private String lenguaje;
     private String estado;
     private EvaluacionImpBO evaluacionBO;
+    private GruposImpBO gruposBO;
     private List<Evaluaciones> lista;
+    private List<GruposJoinDocentes> gruposLista;
     private Evaluaciones selectedEvaluacion;
     private EvaluacionesDataModel dataModel;
  
@@ -99,6 +103,22 @@ public class EvaluacionBean {
         this.selectedEvaluacion = selectedEvaluacion;
     }
 
+    public List<GruposJoinDocentes> getGruposLista() {
+        return gruposLista;
+    }
+
+    public void setGruposLista(List<GruposJoinDocentes> gruposLista) {
+        this.gruposLista = gruposLista;
+    }
+
+    public GruposImpBO getGruposBO() {
+        return gruposBO;
+    }
+
+    public void setGruposBO(GruposImpBO gruposBO) {
+        this.gruposBO = gruposBO;
+    }
+    
     public String insert() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ServletContext context = ((HttpServletRequest) ctx.getExternalContext().getRequest()).getSession().getServletContext();
@@ -110,7 +130,7 @@ public class EvaluacionBean {
             getAll();
             File f = new File(path+lenguaje+fechaInicio+fechaFin);
             f.mkdir();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "La evaluacion fue registrada correctamente."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registrada !!", "La evaluacion fue registrada correctamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "Ocurrio un error con el registro."));
             e.printStackTrace();
@@ -122,7 +142,7 @@ public class EvaluacionBean {
         try {
             evaluacionBO.delete(selectedEvaluacion);
             getAll();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "La evaluacion fue eliminada correctamente."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminada !!", "La evaluacion fue eliminada correctamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
         }
@@ -141,4 +161,7 @@ public class EvaluacionBean {
         dataModel = new EvaluacionesDataModel(getLista());
     }
 
+    public void obtenerGruposFromEvaluacion(){
+        setGruposLista(gruposBO.getAllGroupsFromEvaluacion(selectedEvaluacion));
+    }
 }

@@ -7,18 +7,37 @@ public class GruposJoinDocentes {
     private String docente;
     private int idDocente;
     private int nivel;
-    private int idEvaluacion;
+    private int idEvaluacion;    
+    private int totalAlumnos;
+    private int totalEvaluados;
 
-    public GruposJoinDocentes() {
+    public int getTotalEvaluados() {
+        return totalEvaluados;
     }
 
-    public GruposJoinDocentes(Integer idGrupo, String nombre, String docente, int idDocente, int nivel, int idEvaluacion) {
-        this.idGrupo = idGrupo;
-        this.nombre = nombre;
-        this.docente = docente;
-        this.idDocente = idDocente;
-        this.nivel = nivel;
-        this.idEvaluacion = idEvaluacion;
+    public void setTotalEvaluados(int totalEvaluados) {
+        this.totalEvaluados = totalEvaluados;
+    }
+
+    public int getTotalAlumnos() {
+        return totalAlumnos;
+    }
+
+    public void setTotalAlumnos(int totalAlumnos) {
+        this.totalAlumnos = totalAlumnos;
+    }
+
+    private int evaluados;
+
+    public int getEvaluados() {
+        return evaluados;
+    }
+
+    public void setEvaluados(int evaluados) {
+        this.evaluados = evaluados;
+    }
+
+    public GruposJoinDocentes() {
     }
 
     public Integer getIdGrupo() {

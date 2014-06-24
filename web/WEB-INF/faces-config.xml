@@ -19,6 +19,10 @@
             <property-name>evaluacionBO</property-name>
             <value>#{evaluacionBO}</value>
         </managed-property>
+        <managed-property>
+            <property-name>gruposBO</property-name>
+            <value>#{gruposBO}</value>
+        </managed-property>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>subirArchivoBean</managed-bean-name>

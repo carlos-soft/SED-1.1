@@ -40,14 +40,7 @@ public class SubirArchivoBean {
     private GruposJoinDocentes selectedGrupo;
     private GruposDataModel dataModel;
     private List<Alumnos> alumnosFromGroup;
-    private Map<String, Integer> evaluacionesList;
-    private int selectedEvaluacion;
-
-    public void publicarMensaje() {
-        activa = evaluacionBO.getEvaluacionActiva().get(0);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                FacesMessage.SEVERITY_WARN, activa.getLenguaje() + " " + activa.getFechaInicio() + "-" + activa.getFechaFin(), "Es la Evaluacion Actualmente Activa."));
-    }
+    private int selectedEvaluacion; 
 
     public EvaluacionImpBO getEvaluacionBO() {
         return evaluacionBO;
@@ -141,11 +134,6 @@ public class SubirArchivoBean {
         return evaluacionBO.getAllForAList();
     }
 
-    @PostConstruct
-    public void setEvaluacionesList(Map<String, Integer> evaluacionesList) {
-        this.evaluacionesList = evaluacionesList;
-    }
-
     public int getSelectedEvaluacion() {
         return selectedEvaluacion;
     }
@@ -153,12 +141,12 @@ public class SubirArchivoBean {
     public void setSelectedEvaluacion(int selectedEvaluacion) {
         this.selectedEvaluacion = selectedEvaluacion;
     }
-    
+
     public void handleFileUpload(FileUploadEvent event) {
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                    FacesMessage.SEVERITY_INFO, "Listo...", "Registro exitoso."));
+                    FacesMessage.SEVERITY_INFO, "Cargado...", "El Grupo se creo exitosamente."));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -261,30 +249,31 @@ public class SubirArchivoBean {
 
     }
 
-    @PostConstruct
-    public void getAllGrupos() {
-        setLista(gruposBO.getAll());
-        System.out.println(lista.size());
-        dataModel = new GruposDataModel(getLista());
+    public void publicarMensaje() {
+        activa = evaluacionBO.getEvaluacionActiva().get(0);
+        getAllGrupos();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                FacesMessage.SEVERITY_WARN, "'"+activa.getLenguaje() + ": " + activa.getFechaInicio() + "-" + activa.getFechaFin()+"'.", " Evaluacion activa."));
     }
     
+    @PostConstruct
+    public void getAllGrupos() {
+        setLista(gruposBO.getAllGroupsFromEvaluacion(activa));
+        dataModel = new GruposDataModel(getLista());
+    }
+
     public void obtenerAlumnosFromGroupId(){
         setAlumnosFromGroup(alumnosBO.getAlumnosFromGroupId(selectedGrupo));
     }
 
-    public String deleteGrupo() {
+    public void deleteGrupo() {
         try {
             gruposBO.delete(selectedGrupo);
             getAllGrupos();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito !!", "El grupo fue eliminado correctamente."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado !!", "El grupo fue eliminado correctamente."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
             e.printStackTrace();
         }
-        return "";
-    }
-    
-    public void cambiarEvalaucionActual(){
-        System.out.println("Entro");
     }
 }

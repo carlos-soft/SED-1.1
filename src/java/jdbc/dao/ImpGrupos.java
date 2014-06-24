@@ -23,15 +23,18 @@ public class ImpGrupos extends HibernateDaoSupport implements IFaceGrupos {
         getHibernateTemplate().save(obj);
     }
 
-    public List<GruposJoinDocentes> getAll() {
+    public List<GruposJoinDocentes> getAllGroupsFromEvaluacion(Evaluaciones ev) {
         Session session = getHibernateTemplate().getSessionFactory().openSession();
         List data = null;
         List<GruposJoinDocentes> l = new ArrayList<>();
         try {
             Transaction tx = session.beginTransaction();
-            String sql = "SELECT g.idGrupo, g.nombre as grupo, d.idDocente, d.nombre as docente, g.nivel, g.idEvaluacion "
-                    + "FROM Grupos g join Docentes d "
-                    + "where g.idDocente = d.idDocente";
+            String sql = "SELECT g.idGrupo, g.nombre as grupo, d.idDocente, d.nombre as docente, g.nivel, g.idEvaluacion, "
+                    + "(select count(*) from Alumnos where idGrupo = g.idGrupo) as totalAlumnos,  "
+                    + "(select count(*) from Alumnos where idGrupo = g.idGrupo and evaluado=1) as totalEvaluados "
+                    + "FROM Evaluaciones e JOIN Grupos g JOIN Docentes d Join Alumnos a "
+                    + "where g.idDocente = d.idDocente and a.idGrupo = g.idGrupo and g.idEvaluacion = '"+ev.getIdEvaluacion()+"' "
+                    + "group by g.idDocente";
             SQLQuery query = session.createSQLQuery(sql);
             query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
             data = query.list();
@@ -45,12 +48,14 @@ public class ImpGrupos extends HibernateDaoSupport implements IFaceGrupos {
                 g.setIdDocente(Integer.parseInt(row.get("idDocente").toString()));
                 g.setNivel(Integer.parseInt(row.get("nivel").toString()));
                 g.setIdEvaluacion(Integer.parseInt(row.get("idEvaluacion").toString()));
+                g.setTotalAlumnos(Integer.parseInt(row.get("totalAlumnos").toString()));  
+                g.setTotalEvaluados(Integer.parseInt(row.get("totalEvaluados").toString())); 
                 l.add(g);
             }
             tx.commit();
             session.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         return l;
     }
