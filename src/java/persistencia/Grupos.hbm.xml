@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23/06/2014 12:57:15 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated 27/06/2014 02:04:04 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="persistencia.Grupos" table="grupos" catalog="sed">
         <id name="idGrupo" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <property name="nombre" type="string">
-            <column name="nombre" length="45" not-null="true" />
+            <column name="nombre" length="50" not-null="true" />
         </property>
         <property name="idDocente" type="int">
             <column name="idDocente" not-null="true" />

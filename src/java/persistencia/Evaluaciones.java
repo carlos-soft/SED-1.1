@@ -1,5 +1,5 @@
 package persistencia;
-// Generated 23/06/2014 12:57:14 PM by Hibernate Tools 3.6.0
+// Generated 27/06/2014 02:04:02 PM by Hibernate Tools 3.6.0
 
 
 
@@ -19,13 +19,6 @@ public class Evaluaciones  implements java.io.Serializable {
     public Evaluaciones() {
     }
 
-	
-    public Evaluaciones(String fechaInicio, String fechaFin, int year, String estado) {
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.year = year;
-        this.estado = estado;
-    }
     public Evaluaciones(String fechaInicio, String fechaFin, int year, String lenguaje, String estado) {
        this.fechaInicio = fechaInicio;
        this.fechaFin = fechaFin;

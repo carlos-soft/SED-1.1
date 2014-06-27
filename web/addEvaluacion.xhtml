@@ -96,7 +96,7 @@
                             <h:outputText value="#{obj.estado}" />
                         </p:column>
                     </p:dataTable>
-                    <p:dialog header="Grupos Info" widgetVar="gruposDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="500" width="630">
+                    <p:dialog header="Grupos Info" widgetVar="gruposDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="500" width="720">
                         <p:outputPanel id="evaluacionDetail">
                             <p:dataTable id="grupos" var="obj" value="#{evaluacionBean.gruposLista}">
                                 <f:facet name="header">
@@ -108,8 +108,11 @@
                                 <p:column headerText="Docente" width="350">
                                     <h:outputText value="#{obj.docente}" />
                                 </p:column>
-                                <p:column headerText="Nivel" width="35">
+                                <p:column headerText="Nivel" width="35" styleClass="centrarTexto">
                                     <h:outputText value="#{obj.nivel}" />
+                                </p:column>
+                                <p:column headerText="Alumnos" width="60" styleClass="totalEvaluados">
+                                    <h:outputText value="#{obj.totalEvaluados}/#{obj.totalAlumnos}" />
                                 </p:column>
                             </p:dataTable>
                         </p:outputPanel>

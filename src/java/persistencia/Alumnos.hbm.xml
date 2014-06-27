@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23/06/2014 12:57:15 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated 27/06/2014 02:04:04 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="persistencia.Alumnos" table="alumnos" catalog="sed">
         <id name="idAlumno" type="java.lang.Integer">
@@ -15,10 +15,10 @@
             <column name="idGrupo" not-null="true" />
         </property>
         <property name="control" type="string">
-            <column name="control" length="45" not-null="true" />
+            <column name="control" length="20" not-null="true" />
         </property>
         <property name="nombre" type="string">
-            <column name="nombre" length="45" not-null="true" />
+            <column name="nombre" length="50" not-null="true" />
         </property>
         <property name="evaluado" type="boolean">
             <column name="evaluado" not-null="true" />

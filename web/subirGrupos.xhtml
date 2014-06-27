@@ -43,7 +43,7 @@
                             <h:outputText value="#{obj.totalEvaluados}/#{obj.totalAlumnos}" />
                         </p:column>
                     </p:dataTable><br/>
-                    <p:dialog header="Alumnos Info" widgetVar="alumnosDialog" modal="true" showEffect="fade" hideEffect="fade" height="700" width="620">
+                    <p:dialog header="Alumnos Info" widgetVar="alumnosDialog" modal="true" showEffect="fade" hideEffect="fade" height="700" width="640">
                         <p:outputPanel id="alumnosDetail">
                             <p:dataTable id="alumnosDT" var="alumno" value="#{subirArchivoBean.alumnosFromGroup}">
                                 <p:column headerText="Control" width="110" styleClass="#{alumno.evaluado eq 'false' ? 'noEvaluado' : null}">
