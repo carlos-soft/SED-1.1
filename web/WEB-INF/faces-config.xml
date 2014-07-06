@@ -24,6 +24,7 @@
             <value>#{gruposBO}</value>
         </managed-property>
     </managed-bean>
+    
     <managed-bean>
         <managed-bean-name>subirArchivoBean</managed-bean-name>
         <managed-bean-class>jsf.beans.SubirArchivoBean</managed-bean-class>
@@ -45,5 +46,14 @@
             <value>#{alumnosBO}</value>
         </managed-property>
     </managed-bean>
-   
+    
+    <managed-bean>
+        <managed-bean-name>preguntasBean</managed-bean-name>
+        <managed-bean-class>jsf.beans.PreguntasBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>preguntasBO</property-name>
+            <value>#{preguntasBO}</value>
+        </managed-property>
+    </managed-bean>
 </faces-config>

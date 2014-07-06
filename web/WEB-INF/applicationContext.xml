@@ -32,7 +32,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/sed"/>
         <property name="username" value="root"/>
-        <property name="password" value="mysql"/>
+        <!-- <property name="password" value="mysql"/> -->
     </bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource">
@@ -51,6 +51,7 @@
                 <value>/persistencia/Docentes.hbm.xml</value>
                 <value>/persistencia/Grupos.hbm.xml</value>
                 <value>/persistencia/Alumnos.hbm.xml</value>
+                <value>/persistencia/Preguntas.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -68,6 +69,9 @@
     <bean id="alumnosDAO" class="jdbc.dao.ImpAlumnos">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    <bean id="preguntasDAO" class="jdbc.dao.ImpPreguntas">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
     
     
     <!-- BO's -->
@@ -82,6 +86,9 @@
     </bean>
     <bean id="alumnosBO" class="bo.AlumnosImpBO">
         <property name="alumnosDAO" ref="alumnosDAO"></property>
+    </bean>
+    <bean id="preguntasBO" class="bo.PreguntasImpBO">
+        <property name="preguntasDAO" ref="preguntasDAO"></property>
     </bean>
     
 </beans>
