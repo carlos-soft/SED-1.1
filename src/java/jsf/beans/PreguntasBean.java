@@ -61,7 +61,6 @@ public class PreguntasBean {
     }
 
     public void setNewDescricion(String newDescricion) {
-        System.out.println("setDescripcion");
         this.newDescricion = newDescricion;
     }
 
@@ -70,7 +69,6 @@ public class PreguntasBean {
     }
 
     public void setNewRespuestas(String newRespuestas) {
-        System.out.println("setRespuestas");
         this.newRespuestas = newRespuestas;
     }
 
@@ -79,7 +77,6 @@ public class PreguntasBean {
     }
 
     public void setNewIdPregunta(int newIdPregunta) {
-        System.out.println("setPreguntas");
         this.newIdPregunta = newIdPregunta;
     }
 

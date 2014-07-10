@@ -52,6 +52,7 @@
                 <value>/persistencia/Grupos.hbm.xml</value>
                 <value>/persistencia/Alumnos.hbm.xml</value>
                 <value>/persistencia/Preguntas.hbm.xml</value>
+                <value>/persistencia/PreguntasJoinEvaluacion.hbm.xml</value>
             </list>
         </property>
     </bean>

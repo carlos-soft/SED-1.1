@@ -10,28 +10,33 @@
     </h:head>
     <h:body>
         <ui:composition>
-                <h:form> 
-                    <p:menubar>
-                        <p:submenu label="Alumnos" icon="ui-icon-document">
-                            <p:menuitem value="Aplicar Evaluacion" icon="ui-icon-contact"/>
-                        </p:submenu>
+            <h:form> 
+                <p:menubar>
+                    <p:submenu label="Alumnos" icon="ui-icon-document">
+                        <p:menuitem value="Aplicar Evaluacion" icon="ui-icon-contact"/>
+                    </p:submenu>
 
-                        <p:submenu label="Admin" icon="ui-icon-pencil">
-                            <p:menuitem value="Evaluaciones" action="#{menuBean.despachador('addEvaluacion')}" icon="ui-icon-newwin" />
-                            <p:menuitem value="Grupos" action="#{menuBean.despachador('subirGrupos')}" icon="ui-icon-newwin" />
-                            <p:menuitem value="Preguntas" action="#{menuBean.despachador('addPregunta')}" icon="ui-icon-newwin" />
+                    <p:submenu label="Admin" icon="ui-icon-pencil">
+                        <p:submenu label="Evaluaciones" icon="ui-icon-pencil">
+                            <p:menuitem value="Administrar" action="#{menuBean.despachador('addEvaluacion')}" icon="ui-icon-gear" />
+                            <p:menuitem value="Grupos" action="#{menuBean.despachador('subirGrupos')}" icon="ui-icon-gear" />
                         </p:submenu>
-
-                        <p:submenu label="Help" icon="ui-icon-help">
-                            <p:menuitem value="Info" icon="ui-icon-gear" url="#" />
+                        <p:submenu label="Preguntas" icon="ui-icon-pencil">
+                            <p:menuitem value="Banco de Preguntas" action="#{menuBean.despachador('addPregunta')}" icon="ui-icon-gear"/>
+                            <p:menuitem value="Asignar a Evaluacion" action="#{menuBean.despachador('asignarPreguntas')}" icon="ui-icon-gear"/>
                         </p:submenu>
+                    </p:submenu>
 
-                        <f:facet name="options">
-                            <p:inputText style="margin-right:10px"/>
-                            <p:commandButton type="button" value="Buscar" icon="ui-icon-search" />
-                        </f:facet>
-                    </p:menubar>
-                </h:form>
+                    <p:submenu label="Help" icon="ui-icon-help">
+                        <p:menuitem value="Info" icon="ui-icon-gear" url="#" />
+                    </p:submenu>
+
+                    <f:facet name="options">
+                        <p:inputText style="margin-right:10px"/>
+                        <p:commandButton type="button" value="Buscar" icon="ui-icon-search" />
+                    </f:facet>
+                </p:menubar>
+            </h:form>
         </ui:composition>
     </h:body>
 </html>

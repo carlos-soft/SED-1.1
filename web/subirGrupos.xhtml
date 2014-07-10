@@ -19,7 +19,7 @@
                     <p:fileUpload fileUploadListener="#{subirArchivoBean.handleFileUpload}" label="Seleccionar Archivo.."
                                   mode="advanced" uploadLabel="Enviar Archivo" multiple="false" update="@form :gruposForm:grupos">
                     </p:fileUpload>
-                </h:form><br/>
+                </h:form><br/><p:separator /><br/>
                 <h:form id="gruposForm">
                     <p:contextMenu for="grupos">
                         <p:menuitem value="Ver Alumnos" icon="ui-icon-search" update="alumnosDetail" actionListener="#{subirArchivoBean.obtenerAlumnosFromGroupId()}" oncomplete="PF('alumnosDialog').show()"/>
@@ -42,7 +42,7 @@
                         <p:column headerText="Alumnos" width="40" styleClass="totalEvaluados">
                             <h:outputText value="#{obj.totalEvaluados}/#{obj.totalAlumnos}" />
                         </p:column>
-                    </p:dataTable><br/>
+                    </p:dataTable>
                     <p:dialog header="Alumnos Info" widgetVar="alumnosDialog" modal="true" showEffect="fade" hideEffect="fade" height="700" width="640">
                         <p:outputPanel id="alumnosDetail">
                             <p:dataTable id="alumnosDT" var="alumno" value="#{subirArchivoBean.alumnosFromGroup}">

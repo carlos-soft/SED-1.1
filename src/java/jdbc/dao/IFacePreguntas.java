@@ -6,10 +6,16 @@ import persistencia.Preguntas;
 public interface IFacePreguntas {
 
     public void insert(Preguntas obj);
+    
+    public void insertPreguntasEvaluaciones();
 
     public void delete(Preguntas obj);
+    
+    public void deleteOfPreguntaEvaluacion(Preguntas obj);
 
     public void update(Preguntas obj);
 
     public List<Preguntas> getAll();
+    
+    public List<Preguntas> getAllFromPreguntaEvaluacion();
 }

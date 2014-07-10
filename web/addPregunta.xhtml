@@ -17,7 +17,7 @@
                         <p:panelGrid columns="2" style="margin-top:20px;">
                             <f:facet name="header">
                                 <p:row>
-                                    <p:column colspan="2">Registro de Pregunta</p:column>
+                                    <p:column colspan="2">Insertar al Banco de Preguntas</p:column>
                                 </p:row> 
                             </f:facet>
                             <p:outputLabel value="Descripcion: "/>
@@ -30,12 +30,9 @@
                             </p:selectOneMenu>
                         </p:panelGrid><br/>
                         <p:commandButton value="Guardar" icon="ui-icon-disk" action="#{preguntasBean.insert()}" update="@form :form:preguntas"/>
-                    </h:form><br/><br/>
-
+                    </h:form><p:separator />  <br/><br/>
                     <h:form id="form">
                         <p:contextMenu for="preguntas">
-                            <p:menuitem value="Modificar" update="@form :modificar:preguntaDetail" icon="ui-icon-refresh" 
-                                        actionListener="#{preguntasBean.nuevosValores()}" oncomplete="PF('preguntaDialog').show()"/>
                             <p:menuitem value="Eliminar" update="preguntas" icon="ui-icon-close" actionListener="#{preguntasBean.delete()}"/>
                         </p:contextMenu>
                         <p:dataTable id="preguntas" var="obj" value="#{preguntasBean.dataModel}" selection="#{preguntasBean.selectedPregunta}" 
@@ -50,31 +47,6 @@
                                 <h:outputText value="#{obj.respuestas}" />
                             </p:column>
                         </p:dataTable>
-                    </h:form>
-                    <h:form id="modificar">
-                        <p:dialog header="Modificar Pregunta" id="preguntaDialog" widgetVar="preguntaDialog" modal="true" showEffect="fade" hideEffect="fade" 
-                                  resizable="false">
-                            <p:outputPanel id="preguntaDetail">
-                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-                                <p:panelGrid  columns="2" rendered="#{not empty preguntasBean.selectedPregunta}">
-                                    <f:facet name="header">
-                                        Informacion de la pregunta
-                                    </f:facet>
-                                    <h:outputText value="Id:" />
-                                    <h:inputText value="#{preguntasBean.newIdPregunta}" disabled="true"/>
-                                    <h:outputText value="Descripcion" />
-                                    <p:inputTextarea rows="3" cols="33" value="#{preguntasBean.newDescricion}" required="true" requiredMessage="Falta descripcion"/>
-                                    <h:outputText value="Respuestas:" />
-                                    <p:selectOneMenu value="#{preguntasBean.newRespuestas}" required="true" requiredMessage="Especificar orden de respuestas">
-                                        <f:selectItem itemLabel="-- RESPUESTAS --" itemValue="" noSelectionOption="true"/>
-                                        <f:selectItem itemLabel="Orden" itemValue="orden"/>
-                                        <f:selectItem itemLabel="Desorden" itemValue="desorden"/>
-                                    </p:selectOneMenu>
-                                </p:panelGrid><br/>
-                                <p:commandButton value="Modificar" icon="ui-icon-disk" action="#{preguntasBean.update()}" update="@form :form:preguntas" 
-                                                 oncomplete="PF('preguntaDialog').hide()"/>
-                            </p:outputPanel>
-                        </p:dialog>
                     </h:form>
                 </div>
             </ui:define>

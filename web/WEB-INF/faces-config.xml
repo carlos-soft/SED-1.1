@@ -56,4 +56,14 @@
             <value>#{preguntasBO}</value>
         </managed-property>
     </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>asignarPreguntasBean</managed-bean-name>
+        <managed-bean-class>jsf.beans.AsignarPreguntasBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>preguntasBO</property-name>
+            <value>#{preguntasBO}</value>
+        </managed-property>
+    </managed-bean>
 </faces-config>

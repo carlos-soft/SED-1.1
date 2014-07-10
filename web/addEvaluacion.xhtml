@@ -71,7 +71,7 @@
                         <p:commandButton value="Guardar" icon="ui-icon-disk" 
                                          action="#{evaluacionBean.insert}" validateClient="true" update="@form :form:evaluaciones"/>
                     </h:form>
-                </div><br/><br/>
+                </div><p:separator /> <br/><br/>
                 <h:form id="form">
                     <p:contextMenu for="evaluaciones">
                         <p:menuitem value="Grupos" update="evaluacionDetail" icon="ui-icon-search" actionListener="#{evaluacionBean.obtenerGruposFromEvaluacion()}" oncomplete="PF('gruposDialog').show()"/>

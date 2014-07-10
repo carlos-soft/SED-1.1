@@ -1,5 +1,5 @@
 package persistencia;
-// Generated 04-jul-2014 23:09:14 by Hibernate Tools 3.6.0
+// Generated 08-jul-2014 19:01:58 by Hibernate Tools 3.6.0
 
 
 
@@ -12,17 +12,20 @@ public class Preguntas  implements java.io.Serializable {
      private Integer idPregunta;
      private String descripcion;
      private String respuestas;
+     private String banco;
 
     public Preguntas() {
     }
 
 	
-    public Preguntas(String descripcion) {
+    public Preguntas(String descripcion, String banco) {
         this.descripcion = descripcion;
+        this.banco = banco;
     }
-    public Preguntas(String descripcion, String respuestas) {
+    public Preguntas(String descripcion, String respuestas, String banco) {
        this.descripcion = descripcion;
        this.respuestas = respuestas;
+       this.banco = banco;
     }
    
     public Integer getIdPregunta() {
@@ -45,6 +48,13 @@ public class Preguntas  implements java.io.Serializable {
     
     public void setRespuestas(String respuestas) {
         this.respuestas = respuestas;
+    }
+    public String getBanco() {
+        return this.banco;
+    }
+    
+    public void setBanco(String banco) {
+        this.banco = banco;
     }
 
 

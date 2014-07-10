@@ -7,9 +7,10 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sed?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <mapping resource="persistencia/Preguntas.hbm.xml"/>
-    <mapping resource="persistencia/Docentes.hbm.xml"/>
     <mapping resource="persistencia/Alumnos.hbm.xml"/>
     <mapping resource="persistencia/Grupos.hbm.xml"/>
     <mapping resource="persistencia/Evaluaciones.hbm.xml"/>
+    <mapping resource="persistencia/Docentes.hbm.xml"/>
+    <mapping resource="persistencia/PreguntasJoinEvaluacion.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
