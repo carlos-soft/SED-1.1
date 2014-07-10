@@ -1,6 +1,7 @@
 package jsf.beans;
 
 import bo.PreguntasImpBO;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -13,6 +14,8 @@ public class AsignarPreguntasBean {
     private String respuestas;
     private static Preguntas selectedPregunta;
     private PreguntasDataModel dataModel;
+    private List<Preguntas> bancoSelectedPreguntas;
+    private static PreguntasDataModel bancoDataModel;
     private PreguntasImpBO preguntasBO;
 
     public AsignarPreguntasBean() {
@@ -25,7 +28,7 @@ public class AsignarPreguntasBean {
     public void setIdPregunta(int idPregunta) {
         this.idPregunta = idPregunta;
     }
-    
+
     public String getDescricion() {
         return descricion;
     }
@@ -41,9 +44,13 @@ public class AsignarPreguntasBean {
     public void setRespuestas(String respuestas) {
         this.respuestas = respuestas;
     }
-    
+
     public PreguntasDataModel getDataModel() {
         return dataModel;
+    }
+
+    public PreguntasDataModel getBancoDataModel() {
+        return bancoDataModel;
     }
 
     public Preguntas getSelectedPregunta() {
@@ -53,6 +60,14 @@ public class AsignarPreguntasBean {
     public void setSelectedPregunta(Preguntas selectedPregunta) {
         this.selectedPregunta = selectedPregunta;
     }
+
+    public List<Preguntas> getBancoSelectedPreguntas() {
+        return bancoSelectedPreguntas;
+    }
+
+    public void setBancoSelectedPreguntas(List<Preguntas> bancoSelectedPreguntas) {
+        this.bancoSelectedPreguntas = bancoSelectedPreguntas;
+    }
     
     public PreguntasImpBO getPreguntasBO() {
         return preguntasBO;
@@ -61,7 +76,7 @@ public class AsignarPreguntasBean {
     public void setPreguntasBO(PreguntasImpBO preguntasBO) {
         this.preguntasBO = preguntasBO;
     }
-    
+
     public void insert() {
         try {
             preguntasBO.insert(this);
@@ -72,7 +87,7 @@ public class AsignarPreguntasBean {
             e.printStackTrace();
         }
     }
-    
+
     public void update() {
         try {
             Preguntas p = new Preguntas();
@@ -88,8 +103,8 @@ public class AsignarPreguntasBean {
             e.printStackTrace();
         }
     }
-    
-    public void delete(){
+
+    public void delete() {
         try {
             preguntasBO.deleteOfPreguntaEvaluacion(selectedPregunta);
             getAll();
@@ -99,10 +114,18 @@ public class AsignarPreguntasBean {
             e.printStackTrace();
         }
     }
-    
+
     @PostConstruct
     public void getAll() {
         dataModel = new PreguntasDataModel(preguntasBO.getAllFromPreguntaEvaluacion());
     }
-    
+
+    public void obtenerPreguntasFromBanco() {
+        bancoDataModel = new PreguntasDataModel(preguntasBO.getAllFromBanco());
+    }
+
+    public void asignarFromBanco() {
+        preguntasBO.asignarFromBanc(bancoSelectedPreguntas);
+        getAll();
+    }
 }

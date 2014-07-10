@@ -55,4 +55,12 @@ public class PreguntasImpBO implements PreguntasBO{
     public void deleteOfPreguntaEvaluacion(Preguntas obj) {
         preguntasDAO.deleteOfPreguntaEvaluacion(obj);
     }
+
+    public List<Preguntas> getAllFromBanco() {
+        return preguntasDAO.getAllFromBanco();
+    }
+
+    public void asignarFromBanc(List<Preguntas> p) {
+        preguntasDAO.asignarFromBanc(p);
+    }
 }

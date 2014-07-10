@@ -18,4 +18,8 @@ public interface IFacePreguntas {
     public List<Preguntas> getAll();
     
     public List<Preguntas> getAllFromPreguntaEvaluacion();
+    
+    public List<Preguntas> getAllFromBanco();
+    
+    public void asignarFromBanc(List<Preguntas> p);
 }

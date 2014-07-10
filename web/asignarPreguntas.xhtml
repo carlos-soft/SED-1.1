@@ -29,12 +29,17 @@
                                 <f:selectItem itemLabel="Desorden" itemValue="desorden"/>
                             </p:selectOneMenu>
                         </p:panelGrid><br/>
-                        <p:commandButton value="Guardar" action="#{asignarPreguntasBean.insert()}" icon="ui-icon-disk" update="@form :form:preguntas"/>
+                        <p:commandButton value="Guardar" action="#{asignarPreguntasBean.insert()}" update="@form :form:preguntas" icon="ui-icon-disk"/>
                     </h:form>
-                    <p:separator/><br/><br/>
+                    <p:separator/><br/>
                     <h:form id="form">
+                        <p align="right"><p:commandLink  actionListener="#{asignarPreguntasBean.obtenerPreguntasFromBanco()}" update="@form :banco:bancoDetail" 
+                                                         oncomplete="PF('bancoDialog').show()">
+                                <h:outputText value="Banco de Preguntas" />
+                            </p:commandLink>
+                        </p><br/>
                         <p:contextMenu for="preguntas">
-                             <p:menuitem value="Modificar" update="@form :modificar:preguntaDetail" icon="ui-icon-refresh" oncomplete="PF('preguntaDialog').show()"/>
+                            <p:menuitem value="Modificar" update="@form :modificar:preguntaDetail" icon="ui-icon-refresh" oncomplete="PF('preguntaDialog').show()"/>
                             <p:menuitem value="Remover" update="preguntas" icon="ui-icon-close" actionListener="#{asignarPreguntasBean.delete()}"/>
                         </p:contextMenu>
                         <p:dataTable id="preguntas" var="obj" value="#{asignarPreguntasBean.dataModel}" selection="#{asignarPreguntasBean.selectedPregunta}" 
@@ -45,7 +50,7 @@
                             <p:column headerText="Descripcion" width="180">
                                 <h:outputText value="#{obj.descripcion}" />
                             </p:column>
-                            <p:column headerText="Respuetas" width="50" >
+                            <p:column headerText="Respuetas" width="20" styleClass="centrarTexto">
                                 <h:outputText value="#{obj.respuestas}" />
                             </p:column>
                         </p:dataTable>
@@ -72,6 +77,30 @@
                                 </p:panelGrid><br/>
                                 <p:commandButton value="Modificar" icon="ui-icon-disk" action="#{asignarPreguntasBean.update()}" update="@form :form:preguntas" 
                                                  oncomplete="PF('preguntaDialog').hide()"/>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
+                    <h:form id="banco">
+                        <p:dialog header="Banco de Preguntas" id="bancoDialog" widgetVar="bancoDialog" modal="true" showEffect="fade" hideEffect="fade" 
+                                  resizable="false" height="700" width="800">
+                            <p:outputPanel id="bancoDetail">
+                                <p:dataTable id="bancoDT" var="preguntaBanco" value="#{asignarPreguntasBean.bancoDataModel}"
+                                             rowKey="#{preguntaBanco.idPregunta}" selection="#{asignarPreguntasBean.bancoSelectedPreguntas}">
+                                    <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                                    <p:column headerText="id" width="30" styleClass="totalEvaluados">
+                                        <h:outputText value="#{preguntaBanco.idPregunta}" />
+                                    </p:column>
+                                    <p:column headerText="Descripcion" width="400">
+                                        <h:outputText value="#{preguntaBanco.descripcion}" />
+                                    </p:column>
+                                    <p:column headerText="Respuestas" width="100" styleClass="centrarTexto">
+                                        <h:outputText value="#{preguntaBanco.respuestas}" />
+                                    </p:column>
+                                    <f:facet name="footer">
+                                        <p:commandButton process="bancoDT" action="#{asignarPreguntasBean.asignarFromBanco()}" icon="ui-icon-disk" value="Agregar" 
+                                                         oncomplete="PF('multiCarDialog').hide()" update="@form :form:preguntas"/>
+                                    </f:facet>
+                                </p:dataTable>
                             </p:outputPanel>
                         </p:dialog>
                     </h:form>

@@ -1,6 +1,7 @@
 package jdbc.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.hibernate.Criteria;
@@ -11,7 +12,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import persistencia.Preguntas;
 import persistencia.PreguntasJoinEvaluacion;
 
-public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas{
+public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas {
 
     public void insert(Preguntas obj) {
         getHibernateTemplate().save(obj);
@@ -25,17 +26,15 @@ public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas{
         getHibernateTemplate().delete(obj);
     }
 
-    
     public void update(Preguntas obj) {
         getHibernateTemplate().merge(obj);
     }
 
-    
     public void insertPreguntasEvaluaciones() {
         Session session = getHibernateTemplate().getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         PreguntasJoinEvaluacion pe = new PreguntasJoinEvaluacion();
-        int idPregunta  = ((Integer) session.createQuery("select max(idPregunta) from Preguntas").iterate().next()); 
+        int idPregunta = ((Integer) session.createQuery("select max(idPregunta) from Preguntas").iterate().next());
         int idEvaluacion = ((Integer) session.createQuery("select idEvaluacion from Evaluaciones where estado = 'activada'").iterate().next());
         pe.setIdPregunta(idPregunta);
         pe.setIdEvaluacion(idEvaluacion);
@@ -55,7 +54,7 @@ public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas{
                     + "from preguntasJoinEvaluacion pe "
                     + "join preguntas p "
                     + "join evaluaciones e "
-                    + "where pe.idPregunta = p.idPregunta and pe.idEvaluacion = e.idEvaluacion and pe.idEvaluacion = '"+idEvaluacion+"'";
+                    + "where pe.idPregunta = p.idPregunta and pe.idEvaluacion = e.idEvaluacion and pe.idEvaluacion = '" + idEvaluacion + "'";
             SQLQuery query = session.createSQLQuery(sql);
             query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
             data = query.list();
@@ -82,6 +81,21 @@ public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas{
         PreguntasJoinEvaluacion pe = new PreguntasJoinEvaluacion();
         pe.setIdPregunta(obj.getIdPregunta());
         getHibernateTemplate().delete(pe);
+    }
+
+    public List<Preguntas> getAllFromBanco() {
+        return getHibernateTemplate().find("from Preguntas where banco = 's'");
+    }
+
+    public void asignarFromBanc(List<Preguntas> p) {
+        Session session = getHibernateTemplate().getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        int idEvaluacion = ((Integer) session.createQuery("select idEvaluacion from Evaluaciones where estado = 'activada'").iterate().next());
+        tx.commit();
+        session.close();
+        for (Iterator<Preguntas> it = p.iterator(); it.hasNext();) { 
+            getHibernateTemplate().save(new PreguntasJoinEvaluacion(it.next().getIdPregunta(), idEvaluacion));
+        }
     }
 
 }
