@@ -5,6 +5,7 @@ import jdbc.dao.ImpPreguntas;
 import jsf.beans.AsignarPreguntasBean;
 import jsf.beans.PreguntasBean;
 import persistencia.Preguntas;
+import persistencia.PreguntasJoinEvaluacion;
 
 public class PreguntasImpBO implements PreguntasBO{
     
@@ -62,5 +63,9 @@ public class PreguntasImpBO implements PreguntasBO{
 
     public void asignarFromBanc(List<Preguntas> p) {
         preguntasDAO.asignarFromBanc(p);
+    }
+
+    public PreguntasJoinEvaluacion getFromPreguntasEvaluacion(List<Preguntas> p) {
+        return preguntasDAO.getFromPreguntasEvaluacion(p);
     }
 }

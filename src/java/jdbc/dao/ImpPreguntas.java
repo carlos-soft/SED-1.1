@@ -77,10 +77,12 @@ public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas 
     }
 
     public void deleteOfPreguntaEvaluacion(Preguntas obj) {
-        getHibernateTemplate().delete(obj);
         PreguntasJoinEvaluacion pe = new PreguntasJoinEvaluacion();
         pe.setIdPregunta(obj.getIdPregunta());
         getHibernateTemplate().delete(pe);
+        if (!obj.getBanco().equals("s")) {
+            getHibernateTemplate().delete(obj);
+        }
     }
 
     public List<Preguntas> getAllFromBanco() {
@@ -93,9 +95,33 @@ public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas 
         int idEvaluacion = ((Integer) session.createQuery("select idEvaluacion from Evaluaciones where estado = 'activada'").iterate().next());
         tx.commit();
         session.close();
-        for (Iterator<Preguntas> it = p.iterator(); it.hasNext();) { 
+        for (Iterator<Preguntas> it = p.iterator(); it.hasNext();) {
             getHibernateTemplate().save(new PreguntasJoinEvaluacion(it.next().getIdPregunta(), idEvaluacion));
         }
+    }
+
+    public PreguntasJoinEvaluacion getFromPreguntasEvaluacion(List<Preguntas> p) {
+        Session session = getHibernateTemplate().getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        int idEvaluacion = ((Integer) session.createQuery("select idEvaluacion from Evaluaciones where estado = 'activada'").iterate().next());
+        try {
+            PreguntasJoinEvaluacion pe = null;
+            for (int i = 0; i < p.size(); i++) {
+                pe = (PreguntasJoinEvaluacion) session.createQuery("from PreguntasJoinEvaluacion where idEvaluacion='" + idEvaluacion + "' and "
+                        + "idPregunta='" + p.get(i).getIdPregunta() + "'").uniqueResult();
+                if (pe == null) {
+                    continue;
+                } else {
+                    return pe;
+                }
+
+            }
+            tx.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

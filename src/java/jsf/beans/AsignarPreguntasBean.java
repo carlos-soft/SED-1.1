@@ -5,7 +5,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import persistencia.Preguntas;
+import persistencia.PreguntasJoinEvaluacion;
 
 public class AsignarPreguntasBean {
 
@@ -13,10 +16,11 @@ public class AsignarPreguntasBean {
     private String descricion;
     private String respuestas;
     private static Preguntas selectedPregunta;
-    private PreguntasDataModel dataModel;
+    private static PreguntasDataModel dataModel;
     private List<Preguntas> bancoSelectedPreguntas;
     private static PreguntasDataModel bancoDataModel;
     private PreguntasImpBO preguntasBO;
+    private boolean btnActivar;
 
     public AsignarPreguntasBean() {
     }
@@ -68,7 +72,7 @@ public class AsignarPreguntasBean {
     public void setBancoSelectedPreguntas(List<Preguntas> bancoSelectedPreguntas) {
         this.bancoSelectedPreguntas = bancoSelectedPreguntas;
     }
-    
+
     public PreguntasImpBO getPreguntasBO() {
         return preguntasBO;
     }
@@ -77,6 +81,14 @@ public class AsignarPreguntasBean {
         this.preguntasBO = preguntasBO;
     }
 
+    public boolean isBtnActivar() {
+        return btnActivar;
+    }
+
+    public void setBtnActivar(boolean btnActivar) {
+        this.btnActivar = btnActivar;
+    }
+    
     public void insert() {
         try {
             preguntasBO.insert(this);
@@ -115,17 +127,44 @@ public class AsignarPreguntasBean {
         }
     }
 
-    @PostConstruct
     public void getAll() {
         dataModel = new PreguntasDataModel(preguntasBO.getAllFromPreguntaEvaluacion());
     }
 
+    @PostConstruct
     public void obtenerPreguntasFromBanco() {
         bancoDataModel = new PreguntasDataModel(preguntasBO.getAllFromBanco());
+        getAll();
     }
 
     public void asignarFromBanco() {
         preguntasBO.asignarFromBanc(bancoSelectedPreguntas);
         getAll();
+    }
+
+    public void mensajeProhibido() {
+        if (selectedPregunta.getBanco().equals("s")) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Prohibido !!", "Las preguntas del banco no pueden ser modificadas."));
+        }
+    }
+    
+    public void onRowSelect(SelectEvent event) {
+        PreguntasJoinEvaluacion pe = preguntasBO.getFromPreguntasEvaluacion(bancoSelectedPreguntas);
+        if (pe != null) {
+            setBtnActivar(true);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe !!", "La pregunta con el Id: "+pe.getIdPregunta()+" ya fue agregada a la evaluacion."));
+        } else {
+            setBtnActivar(false);
+        }
+    }
+    
+    public void onRowUnselect(UnselectEvent event) {
+        PreguntasJoinEvaluacion pe = preguntasBO.getFromPreguntasEvaluacion(bancoSelectedPreguntas);
+        if (pe != null) {
+            setBtnActivar(true);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe !!", "La pregunta con el Id: "+pe.getIdPregunta()+" ya fue agregada a la evaluacion."));
+        } else {
+            setBtnActivar(false);
+        }
     }
 }

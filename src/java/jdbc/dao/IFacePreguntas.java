@@ -2,6 +2,7 @@ package jdbc.dao;
 
 import java.util.List;
 import persistencia.Preguntas;
+import persistencia.PreguntasJoinEvaluacion;
 
 public interface IFacePreguntas {
 
@@ -20,6 +21,8 @@ public interface IFacePreguntas {
     public List<Preguntas> getAllFromPreguntaEvaluacion();
     
     public List<Preguntas> getAllFromBanco();
+    
+    public PreguntasJoinEvaluacion getFromPreguntasEvaluacion(List<Preguntas> p);
     
     public void asignarFromBanc(List<Preguntas> p);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import jsf.beans.AsignarPreguntasBean;
 import jsf.beans.PreguntasBean;
 import persistencia.Preguntas;
+import persistencia.PreguntasJoinEvaluacion;
 
 public interface PreguntasBO {
 
@@ -22,6 +23,8 @@ public interface PreguntasBO {
     public List<Preguntas> getAllFromPreguntaEvaluacion();
     
     public List<Preguntas> getAllFromBanco();
+    
+    public PreguntasJoinEvaluacion getFromPreguntasEvaluacion(List<Preguntas> p);
     
     public void asignarFromBanc(List<Preguntas> p);
 
