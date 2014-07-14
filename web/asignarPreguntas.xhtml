@@ -12,6 +12,11 @@
         <ui:composition template="masterLayout.xhtml">
             <ui:define name="content">
                 <div align="center">
+                    <h:form>
+                        <p align="right">
+                            <p:commandLink action="#{subirArchivoBean.publicarMensaje()}" value="Ver Evaluacion Actual" styleClass="banco"/>
+                        </p>
+                    </h:form>
                     <h:form id="principal">
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                         <p:panelGrid columns="2" style="margin-top:20px;">
@@ -34,15 +39,15 @@
                     <p:separator/><br/>
                     <h:form id="form">
                         <p align="right">
-                            <p:commandLink  update="@form :banco:bancoDetail" oncomplete="PF('bancoDialog').show()">
+                            <p:commandLink  update="@form :banco:bancoDetail" oncomplete="PF('bancoDialog').show()" styleClass="banco">
                                 <h:outputText value="Banco de Preguntas" />
                             </p:commandLink>
                         </p>
-                        <br/>
                         <p:contextMenu for="preguntas">
                             <p:menuitem value="Modificar" update="@form :modificar:preguntaDetail" icon="ui-icon-refresh" 
                                         oncomplete="PF('preguntaDialog').show()" action="#{asignarPreguntasBean.mensajeProhibido()}"/>
                             <p:menuitem value="Remover" update="preguntas" icon="ui-icon-close" actionListener="#{asignarPreguntasBean.delete()}"/>
+                            <p:menuitem value="Agragar al Banco" update="preguntas" icon="ui-icon-disk" actionListener="#{asignarPreguntasBean.agregarABanco()}"/>
                         </p:contextMenu>
                         <p:dataTable id="preguntas" var="obj" value="#{asignarPreguntasBean.dataModel}" selection="#{asignarPreguntasBean.selectedPregunta}" 
                                      rowKey="#{obj.idPregunta}" selectionMode="single">

@@ -43,6 +43,7 @@ body{
 .escuela{
     height:25px;
     color: #71ae38;
+    font-family:Tahoma;
 }
 
 #bienvenida{
@@ -73,4 +74,33 @@ body{
 .banco{
     color: #71ae38;
     text-align:center
+}
+
+A:link { 
+    font-size: 15px;
+    text-decoration: none;
+}
+A:visited {
+    font-size: 15px;
+    text-decoration: none;
+}
+A:hover {
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+
+A.banco:link { 
+    font-size: 15px;
+    text-decoration: none;
+    color: #ff6666;
+}
+A.banco:visited {
+    font-size: 15px;
+    text-decoration: none;
+    color: #ff6666;
+}
+A.banco:hover {
+    font-size: 16px;
+    color: #ff6666;
 }

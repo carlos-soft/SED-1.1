@@ -25,4 +25,6 @@ public interface IFacePreguntas {
     public PreguntasJoinEvaluacion getFromPreguntasEvaluacion(List<Preguntas> p);
     
     public void asignarFromBanc(List<Preguntas> p);
+    
+    public void cambiarBanco(int idPregunta);
 }

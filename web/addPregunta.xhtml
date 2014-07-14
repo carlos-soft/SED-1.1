@@ -32,9 +32,6 @@
                         <p:commandButton value="Guardar" icon="ui-icon-disk" action="#{preguntasBean.insert()}" update="@form :form:preguntas"/>
                     </h:form><p:separator />  <br/><br/>
                     <h:form id="form">
-                        <p:contextMenu for="preguntas">
-                            <p:menuitem value="Eliminar" update="preguntas" icon="ui-icon-close" actionListener="#{preguntasBean.delete()}"/>
-                        </p:contextMenu>
                         <p:dataTable id="preguntas" var="obj" value="#{preguntasBean.dataModel}" selection="#{preguntasBean.selectedPregunta}" 
                                      rowKey="#{obj.idPregunta}" selectionMode="single">
                             <f:facet name="header">

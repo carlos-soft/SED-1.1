@@ -124,4 +124,13 @@ public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas 
         return null;
     }
 
+    public void cambiarBanco(int idPregunta) {
+        Session session = getHibernateTemplate().getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        String hqlUpdate = "update Preguntas set banco = 's' where idPregunta = '"+idPregunta+"'";
+        session.createQuery(hqlUpdate).executeUpdate();
+        tx.commit();
+        session.close();
+    }
+
 }

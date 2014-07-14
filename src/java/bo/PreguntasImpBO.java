@@ -68,4 +68,8 @@ public class PreguntasImpBO implements PreguntasBO{
     public PreguntasJoinEvaluacion getFromPreguntasEvaluacion(List<Preguntas> p) {
         return preguntasDAO.getFromPreguntasEvaluacion(p);
     }
+
+    public void cambiarBanco(int idPregunta) {
+        preguntasDAO.cambiarBanco(idPregunta);
+    }
 }

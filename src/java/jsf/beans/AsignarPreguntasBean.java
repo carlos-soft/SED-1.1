@@ -88,7 +88,7 @@ public class AsignarPreguntasBean {
     public void setBtnActivar(boolean btnActivar) {
         this.btnActivar = btnActivar;
     }
-    
+
     public void insert() {
         try {
             preguntasBO.insert(this);
@@ -147,24 +147,35 @@ public class AsignarPreguntasBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Prohibido !!", "Las preguntas del banco no pueden ser modificadas."));
         }
     }
-    
+
     public void onRowSelect(SelectEvent event) {
         PreguntasJoinEvaluacion pe = preguntasBO.getFromPreguntasEvaluacion(bancoSelectedPreguntas);
         if (pe != null) {
             setBtnActivar(true);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe !!", "La pregunta con el Id: "+pe.getIdPregunta()+" ya fue agregada a la evaluacion."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe !!", "La pregunta con el Id: " + pe.getIdPregunta() + " ya fue agregada a la evaluacion."));
         } else {
             setBtnActivar(false);
         }
     }
-    
+
     public void onRowUnselect(UnselectEvent event) {
         PreguntasJoinEvaluacion pe = preguntasBO.getFromPreguntasEvaluacion(bancoSelectedPreguntas);
         if (pe != null) {
             setBtnActivar(true);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe !!", "La pregunta con el Id: "+pe.getIdPregunta()+" ya fue agregada a la evaluacion."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe !!", "La pregunta con el Id: " + pe.getIdPregunta() + " ya fue agregada a la evaluacion."));
         } else {
             setBtnActivar(false);
+        }
+    }
+
+    public void agregarABanco() {
+        try {
+            preguntasBO.cambiarBanco(selectedPregunta.getIdPregunta());
+            getAll();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Asignada !!", "La pregunta fue asignada al banco."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de asignar la pregunta."));
+            e.printStackTrace();
         }
     }
 }
