@@ -170,9 +170,13 @@ public class AsignarPreguntasBean {
 
     public void agregarABanco() {
         try {
-            preguntasBO.cambiarBanco(selectedPregunta.getIdPregunta());
-            getAll();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Asignada !!", "La pregunta fue asignada al banco."));
+            if (selectedPregunta.getBanco().equals("s")) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "La pregunta ya pertenece al Banco."));
+            } else {
+                preguntasBO.cambiarBanco(selectedPregunta.getIdPregunta());
+                getAll();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Asignada !!", "La pregunta fue asignada al banco."));
+            }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de asignar la pregunta."));
             e.printStackTrace();

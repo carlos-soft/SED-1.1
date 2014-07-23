@@ -7,8 +7,8 @@ import jsf.beans.PreguntasBean;
 import persistencia.Preguntas;
 import persistencia.PreguntasJoinEvaluacion;
 
-public class PreguntasImpBO implements PreguntasBO{
-    
+public class PreguntasImpBO implements PreguntasBO {
+
     private ImpPreguntas preguntasDAO;
 
     public ImpPreguntas getPreguntasDAO() {
@@ -18,7 +18,7 @@ public class PreguntasImpBO implements PreguntasBO{
     public void setPreguntasDAO(ImpPreguntas preguntasDAO) {
         this.preguntasDAO = preguntasDAO;
     }
-    
+
     public void insert(PreguntasBean obj) {
         Preguntas p = new Preguntas();
         p.setDescripcion(obj.getDescricion());
@@ -26,7 +26,7 @@ public class PreguntasImpBO implements PreguntasBO{
         p.setBanco("s");
         preguntasDAO.insert(p);
     }
-    
+
     public void insert(AsignarPreguntasBean obj) {
         Preguntas p = new Preguntas();
         p.setDescripcion(obj.getDescricion());
@@ -48,7 +48,6 @@ public class PreguntasImpBO implements PreguntasBO{
         preguntasDAO.update(obj);
     }
 
-    
     public List<Preguntas> getAllFromPreguntaEvaluacion() {
         return preguntasDAO.getAllFromPreguntaEvaluacion();
     }
@@ -72,4 +71,5 @@ public class PreguntasImpBO implements PreguntasBO{
     public void cambiarBanco(int idPregunta) {
         preguntasDAO.cambiarBanco(idPregunta);
     }
+
 }

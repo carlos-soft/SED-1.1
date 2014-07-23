@@ -1,15 +1,14 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-jul-2014 19:01:58 by Hibernate Tools 3.6.0 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23/07/2014 02:04:08 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="persistencia.PreguntasJoinEvaluacion" table="preguntasJoinEvaluacion" catalog="sed">
-        <id name="idPregunta" type="int">
-            <column name="idPregunta" />
-            <generator class="assigned" />
-        </id>
-        <property name="idEvaluacion" type="int">
-            <column name="idEvaluacion" not-null="true" />
-        </property>
-    </class>
+  <class catalog="sed" name="persistencia.PreguntasJoinEvaluacion" table="preguntasjoinevaluacion">
+    <id name="idPregunta" type="int">
+      <column name="idPregunta"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="idEvaluacion" type="int">
+      <column name="idEvaluacion" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>

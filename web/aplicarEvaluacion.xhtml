@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="masterLayout.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="tabalPreguntas" value="#{aplicarEvaluacionBean.preguntas}" var="pregunta">
+                        <f:facet name="header">
+                            Evaluacion
+                        </f:facet>
+                        <p:column headerText="Pregunta" width="80%">
+                            #{pregunta.descripcion}
+                        </p:column>
+                        <p:column headerText="Respuesta" width="20%">
+                            <p:selectOneMenu id="respuestas" value="#{pregunta.answer}" required="true" 
+                                             requiredMessage="Se necesita especificar respuestas">
+                                <f:selectItem itemLabel="Siempre" itemValue="siempre" />
+                                <f:selectItem itemLabel="Casi Siempre" itemValue="casi siempre" /> 
+                                <f:selectItem itemLabel="Algunas Veces" itemValue="algunas veces" />
+                                <f:selectItem itemLabel="Rara Vez" itemValue="rara vez" />
+                                <f:selectItem itemLabel="Nunca" itemValue="nunca" />
+                            </p:selectOneMenu>
+                        </p:column>
+                    </p:dataTable>>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

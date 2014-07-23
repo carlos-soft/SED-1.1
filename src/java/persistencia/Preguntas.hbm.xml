@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-jul-2014 19:01:58 by Hibernate Tools 3.6.0 -->
+<!-- Generated 23/07/2014 02:04:08 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="persistencia.Preguntas" table="preguntas" catalog="sed">
         <id name="idPregunta" type="java.lang.Integer">
@@ -16,6 +16,9 @@
         </property>
         <property name="banco" type="string">
             <column name="banco" length="1" not-null="true" />
+        </property>
+        <property name="answer" type="string">
+            <column name="answer" length="20" />
         </property>
     </class>
 </hibernate-mapping>

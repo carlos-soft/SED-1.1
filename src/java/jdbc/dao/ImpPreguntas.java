@@ -38,9 +38,9 @@ public class ImpPreguntas extends HibernateDaoSupport implements IFacePreguntas 
         int idEvaluacion = ((Integer) session.createQuery("select idEvaluacion from Evaluaciones where estado = 'activada'").iterate().next());
         pe.setIdPregunta(idPregunta);
         pe.setIdEvaluacion(idEvaluacion);
-        getHibernateTemplate().save(pe);
         tx.commit();
         session.close();
+        getHibernateTemplate().save(pe);
     }
 
     public List<Preguntas> getAllFromPreguntaEvaluacion() {
