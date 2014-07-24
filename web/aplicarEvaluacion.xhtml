@@ -12,16 +12,21 @@
         <ui:composition template="masterLayout.xhtml">
             <ui:define name="content">
                 <h:form>
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />    
                     <p:dataTable id="tabalPreguntas" value="#{aplicarEvaluacionBean.preguntas}" var="pregunta">
                         <f:facet name="header">
                             Evaluacion
                         </f:facet>
-                        <p:column headerText="Pregunta" width="80%">
+                        <p:column headerText="No." width="3%" styleClass="#{((aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0) ? (pregunta.answer eq 'no' ? 'noContestada': 'par'): (pregunta.answer eq 'no' ? 'noContestada': 'impar')}">
+                            #{aplicarEvaluacionBean.preguntas.indexOf(pregunta)+1}.
+                        </p:column>
+                        <p:column id="descripcion" headerText="Pregunta" width="77%" 
+                                  styleClass="#{((aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0) ? (pregunta.answer eq 'no' ? 'noContestada': 'par'): (pregunta.answer eq 'no' ? 'noContestada': 'impar')}">
                             #{pregunta.descripcion}
                         </p:column>
-                        <p:column headerText="Respuesta" width="20%">
-                            <p:selectOneMenu id="respuestas" value="#{pregunta.answer}" required="true" 
-                                             requiredMessage="Se necesita especificar respuestas">
+                        <p:column headerText="Respuesta" width="20%" styleClass="#{((aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0) ? (pregunta.answer eq 'no' ? 'noContestada': 'par'): (pregunta.answer eq 'no' ? 'noContestada': 'impar')}">
+                            <p:selectOneMenu id="respuestas" value="#{pregunta.answer}">
+                                <f:selectItem itemLabel="- Respuesta -" itemValue="" noSelectionOption="true"/>
                                 <f:selectItem itemLabel="Siempre" itemValue="siempre" />
                                 <f:selectItem itemLabel="Casi Siempre" itemValue="casi siempre" /> 
                                 <f:selectItem itemLabel="Algunas Veces" itemValue="algunas veces" />
@@ -29,7 +34,12 @@
                                 <f:selectItem itemLabel="Nunca" itemValue="nunca" />
                             </p:selectOneMenu>
                         </p:column>
-                    </p:dataTable>>
+                    </p:dataTable><br/>
+                    <p:fieldset id="comentarios" legend="Comentarios" style="margin-bottom:20px;" >
+                        <p:inputTextarea rows="6" cols="80" value="#{aplicarEvaluacionBean.comentario}"/>
+                    </p:fieldset><br/><br/>
+                    <p align="center"><p:commandButton value="Enviar Prueba" action="#{aplicarEvaluacionBean.guardarEvaluacion}" update="tabalPreguntas"/></p>
+                    <p:separator/>
                 </h:form>
             </ui:define>
         </ui:composition>

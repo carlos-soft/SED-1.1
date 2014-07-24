@@ -108,3 +108,16 @@ A.banco:hover {
 .radios{
     padding-left: 30px;
 }
+
+.par{
+    background: #ffffff;
+}
+
+.impar{
+    background: #def2fa;
+}
+
+.noContestada{
+    background: #ffcccc;
+    color: #a10808; 
+}
