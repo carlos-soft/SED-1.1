@@ -13,17 +13,17 @@
             <h:form> 
                 <p:menubar>
                     <p:submenu label="Alumnos" icon="ui-icon-document">
-                        <p:menuitem value="Aplicar Evaluacion" action="#{menuBean.despachador('aplicarEvaluacion')}" icon="ui-icon-contact"/>
+                        <p:menuitem value="Aplicar Evaluacion" url="/alumnos/aplicarEvaluacion.xhtml" icon="ui-icon-contact"/>
                     </p:submenu>
 
                     <p:submenu label="Admin" icon="ui-icon-pencil">
                         <p:submenu label="Evaluaciones" icon="ui-icon-pencil">
-                            <p:menuitem value="Administrar" action="#{menuBean.despachador('addEvaluacion')}" icon="ui-icon-gear" />
-                            <p:menuitem value="Grupos" action="#{menuBean.despachador('subirGrupos')}" icon="ui-icon-gear" />
+                            <p:menuitem value="Administrar" url="/admin/addEvaluacion.xhtml" icon="ui-icon-gear" />
+                            <p:menuitem value="Grupos" url="/admin/subirGrupos.xhtml" icon="ui-icon-gear" />
                         </p:submenu>
                         <p:submenu label="Preguntas" icon="ui-icon-pencil">
-                            <p:menuitem value="Banco de Preguntas" action="#{menuBean.despachador('addPregunta')}" icon="ui-icon-gear"/>
-                            <p:menuitem value="Asignar a Evaluacion" action="#{menuBean.despachador('asignarPreguntas')}" icon="ui-icon-gear"/>
+                            <p:menuitem value="Banco de Preguntas" url="/admin/addPregunta.xhtml" action="#{menuBean.despachador('addPregunta')}" icon="ui-icon-gear"/>
+                            <p:menuitem value="Asignar a Evaluacion" url="/admin/asignarPreguntas.xhtml" action="#{menuBean.despachador('asignarPreguntas')}" icon="ui-icon-gear"/>
                         </p:submenu>
                     </p:submenu>
 
