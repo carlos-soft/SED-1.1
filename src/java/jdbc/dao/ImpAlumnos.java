@@ -22,5 +22,10 @@ public class ImpAlumnos extends HibernateDaoSupport implements IFaceAlumnos{
         return getHibernateTemplate().find("from Alumnos where idEvaluacion='"+g.getIdEvaluacion()+
                 "' and idGrupo='"+g.getIdGrupo()+"'");
     }
+
+    @Override
+    public boolean isEvaluado(String control) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -41,7 +41,7 @@
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
     
-    <!-- Filtros de seguridad -->
+    <!-- Filtros de seguridad 
     <filter>
         <filter-name>LogginFilter</filter-name>
         <filter-class>filtros.LogginFilter</filter-class>
@@ -49,14 +49,14 @@
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
         <url-pattern>/admin/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
     <filter>
         <filter-name>FiltroAlumno</filter-name>
         <filter-class>filtros.FiltroAlumno</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>FiltroAlumno</filter-name>
-        <url-pattern>/alumno/*</url-pattern>
+        <url-pattern>/alumno/aplicarEvaluacion.xhtml</url-pattern>
     </filter-mapping>
     
 </web-app>

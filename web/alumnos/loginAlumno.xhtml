@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../masterLayout.xhtml">
+            <ui:define name="content">
+                <br/><br/>
+                <h:form>
+                    <p:messages id="messages" /><br/>
+                    <p:commandLink id="btnLogin" value="#{alumnoLoginBean.mensage}" onclick="PF('login').show();"/>
+                    <p:overlayPanel id="loginPanel" for="btnLogin" hideEffect="fade" dynamic="true" style="width:400px">
+                        <p:panel header="Identificate">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <p:outputLabel value="Control: " for="control"/>
+                                <p:inputText id="control" value="#{alumnoLoginBean.control}"/>
+                            </h:panelGrid>
+                            <p align="center"><p:commandButton value="Enviar" action="#{alumnoLoginBean.validar()}"/></p>
+                        </p:panel>
+                    </p:overlayPanel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

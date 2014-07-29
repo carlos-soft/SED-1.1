@@ -76,4 +76,14 @@
             <value>#{preguntasBO}</value>
         </managed-property>
     </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>alumnoLoginBean</managed-bean-name>
+        <managed-bean-class>jsf.beans.AlumnoLoginBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>evaluacionBO</property-name>
+            <value>#{evaluacionBO}</value>
+        </managed-property>
+    </managed-bean>
 </faces-config>
