@@ -9,21 +9,29 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class FiltroAlumno implements Filter{
+public class FiltroAlumno implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
-        
+
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest)request;
-        HttpServletResponse resp = (HttpServletResponse)response;
-        System.out.println("hola");
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+        HttpSession session = req.getSession();
+        resp.setHeader("Cache-Control", "no-cache");
+        Object userInSession = session.getAttribute("mensage");
+        if (userInSession == null) {
+            req.getRequestDispatcher("/alumnos/loginAlumno.xhtml").forward(request, response);
+            return;
+        }
+        chain.doFilter(request, response);
     }
 
     public void destroy() {
-        
+
     }
-    
+
 }

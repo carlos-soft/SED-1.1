@@ -8,5 +8,5 @@ public interface IFaceAlumnos {
     void insert(Alumnos obj, String grupo);
     List<Alumnos> getAll();
     List<Alumnos> getAlumnosFromGroupId(Grupos g);
-    boolean isEvaluado(String control);
+    String validarAlumno(String control);
 }

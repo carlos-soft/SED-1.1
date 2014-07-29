@@ -1,24 +1,22 @@
 package jsf.beans;
 
+import bo.AlumnosImpBO;
 import bo.EvaluacionImpBO;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import persistencia.Evaluaciones;
 
 public class AlumnoLoginBean {
-    
+
     private Evaluaciones activa;
     private EvaluacionImpBO evaluacionBO;
     private String mensage;
     private String control;
-    
+    private AlumnosImpBO alumnosBO;
+
     public AlumnoLoginBean() {
     }
 
@@ -49,22 +47,50 @@ public class AlumnoLoginBean {
     public void setControl(String control) {
         this.control = control;
     }
-    
-    @PostConstruct
-    public void printLink(){
-        activa = evaluacionBO.getEvaluacionActiva().get(0);
-        mensage =  activa.getLenguaje() + ": " + activa.getFechaInicio() + "-" + activa.getFechaFin()+".";
+
+    public AlumnosImpBO getAlumnosBO() {
+        return alumnosBO;
+    }
+
+    public void setAlumnosBO(AlumnosImpBO alumnosBO) {
+        this.alumnosBO = alumnosBO;
     }
     
-    public void validar(){
+    @PostConstruct
+    public void printLink() {
+        activa = evaluacionBO.getEvaluacionActiva().get(0);
+        mensage = activa.getLenguaje() + ": " + activa.getFechaInicio() + "-" + activa.getFechaFin() + ".";
+    }
+
+    public void aplicar(){
         try {
-            HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-            HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-            res.sendRedirect(req.getContextPath()+"/alumnos/aplicarEvaluacion.xhtml");
-            System.out.println("Munco");
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect(ec.getRequestContextPath() + "/alumnos/evaluacion.xhtml");
         } catch (Exception ex) {
-            System.out.println(" -- validar -- ");
             ex.printStackTrace();
-        } 
+        }
+    }
+    
+    public void validar() {
+        try {
+            switch(alumnosBO.validarAlumno(control)){
+                case "no existe":
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+                    (FacesMessage.SEVERITY_FATAL, "No existe !!", "El numero de control es invalido."));
+                    break;
+                case "ya evaluado":
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+                    (FacesMessage.SEVERITY_FATAL, "Ya evaluo !!", "El alumno ya realizo la evaluacion."));
+                    break;
+                case "valido":
+                    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                    Map<String, Object> sessionMap = ec.getSessionMap();
+                    sessionMap.put("mensage", "valido");
+                    ec.redirect(ec.getRequestContextPath() + "/alumnos/evaluacion.xhtml");
+                    break;
+            }            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

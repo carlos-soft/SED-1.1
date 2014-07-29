@@ -23,9 +23,17 @@ public class ImpAlumnos extends HibernateDaoSupport implements IFaceAlumnos{
                 "' and idGrupo='"+g.getIdGrupo()+"'");
     }
 
-    @Override
-    public boolean isEvaluado(String control) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String validarAlumno(String control) {
+        try {
+            Alumnos a =  (Alumnos) getHibernateTemplate().find("from Alumnos where control='"+control+"'").get(0);
+            if (a.isEvaluado()) {
+                return "ya evaluado";
+            } else {
+                return "valido";
+            }
+        } catch (Exception e) {
+            return "no existe";
+        }
     }
     
 }

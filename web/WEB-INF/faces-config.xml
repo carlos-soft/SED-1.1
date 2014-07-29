@@ -85,5 +85,9 @@
             <property-name>evaluacionBO</property-name>
             <value>#{evaluacionBO}</value>
         </managed-property>
+        <managed-property>
+            <property-name>alumnosBO</property-name>
+            <value>#{alumnosBO}</value>
+        </managed-property>
     </managed-bean>
 </faces-config>

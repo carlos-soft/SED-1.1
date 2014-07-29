@@ -56,7 +56,7 @@
     </filter>
     <filter-mapping>
         <filter-name>FiltroAlumno</filter-name>
-        <url-pattern>/alumno/aplicarEvaluacion.xhtml</url-pattern>
+        <url-pattern>/alumnos/evaluacion.xhtml</url-pattern>
     </filter-mapping>
     
 </web-app>

@@ -55,9 +55,8 @@ public class AlumnosImpBO implements AlumnosBO {
         return alumnosDAO.getAlumnosFromGroupId(g);
     }
 
-    @Override
-    public boolean isEvaluado(String control) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String validarAlumno(String control) {
+        return alumnosDAO.validarAlumno(control);
     }
 
 }

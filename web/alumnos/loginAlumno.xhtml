@@ -12,19 +12,23 @@
         <ui:composition template="../masterLayout.xhtml">
             <ui:define name="content">
                 <br/><br/>
-                <h:form>
-                    <p:messages id="messages" /><br/>
-                    <p:commandLink id="btnLogin" value="#{alumnoLoginBean.mensage}" onclick="PF('login').show();"/>
-                    <p:overlayPanel id="loginPanel" for="btnLogin" hideEffect="fade" dynamic="true" style="width:400px">
-                        <p:panel header="Identificate">
-                            <h:panelGrid columns="2" cellpadding="5">
-                                <p:outputLabel value="Control: " for="control"/>
-                                <p:inputText id="control" value="#{alumnoLoginBean.control}"/>
-                            </h:panelGrid>
-                            <p align="center"><p:commandButton value="Enviar" action="#{alumnoLoginBean.validar()}"/></p>
-                        </p:panel>
-                    </p:overlayPanel>
-                </h:form>
+                <div align="center">
+                    <h:form>
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                        <p:panelGrid columns="2" >
+                            <f:facet name="header">
+                                <p:row>
+                                    <p:column colspan="2">Identificate</p:column>
+                                </p:row>
+                            </f:facet>
+                            <p:outputLabel value="Control: " for="control"/>
+                            <p:inputText id="control" value="#{alumnoLoginBean.control}"/>
+                        </p:panelGrid>
+                        <p align="center">
+                            <p:commandButton value="Enviar" actionListener="#{alumnoLoginBean.validar()}"/>
+                        </p>
+                    </h:form>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>
