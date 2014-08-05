@@ -58,9 +58,5 @@ public class AplicarEvaluacionBean {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "Falta contestar la(s) preguntas."));
         }
-        if (comentario.equals("")) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "Falta agregar comentario."));
-        }
     }
 }
