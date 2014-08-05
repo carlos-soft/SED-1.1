@@ -12,9 +12,9 @@
         <ui:composition template="../masterLayout.xhtml">
             <ui:define name="content">
                 <div align="center">
-                    <h:form>
+                    <h:form id="formInsert">
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-                        <p:panelGrid columns="2" style="margin-top:20px;">
+                        <p:panelGrid columns="2" style="margin-top:20px;" id="panel">
                             <f:facet name="header">
                                 <p:row>
                                     <p:column colspan="2">Registro de Evaluacion</p:column>

@@ -19,7 +19,7 @@
                     </h:form>
                     <h:form id="principal">
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-                        <p:panelGrid columns="2" style="margin-top:20px;">
+                        <p:panelGrid columns="2" style="margin-top:20px;" id="panel">
                             <f:facet name="header">
                                 <p:row>
                                     <p:column colspan="2">Asignar Pregunta</p:column>
@@ -34,7 +34,7 @@
                                 <f:selectItem itemLabel="Desorden" itemValue="desorden"/>
                             </p:selectOneMenu>
                         </p:panelGrid><br/>
-                        <p:commandButton value="Guardar" action="#{asignarPreguntasBean.insert()}" update="@form :form:preguntas" icon="ui-icon-disk"/>
+                        <p:commandButton value="Guardar" action="#{asignarPreguntasBean.insert()}" update="@form :form:preguntas" icon="ui-icon-disk" process="@this"/>
                     </h:form>
                     <p:separator/><br/>
                     <h:form id="form">

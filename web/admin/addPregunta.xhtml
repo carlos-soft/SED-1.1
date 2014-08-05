@@ -14,7 +14,7 @@
                 <div align="center">
                     <h:form id="principal">
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-                        <p:panelGrid columns="2" style="margin-top:20px;">
+                        <p:panelGrid columns="2" style="margin-top:20px;" id="panel">
                             <f:facet name="header">
                                 <p:row>
                                     <p:column colspan="2">Insertar al Banco de Preguntas</p:column>
@@ -29,7 +29,7 @@
                                 <f:selectItem itemLabel="Desorden" itemValue="desorden"/>
                             </p:selectOneMenu>
                         </p:panelGrid><br/>
-                        <p:commandButton value="Guardar" icon="ui-icon-disk" action="#{preguntasBean.insert()}" update="@form :form:preguntas"/>
+                        <p:commandButton value="Guardar" icon="ui-icon-disk" action="#{preguntasBean.insert()}" update="@form :form:preguntas" process="@this"/>
                     </h:form><p:separator />  <br/><br/>
                     <h:form id="form">
                         <p:dataTable id="preguntas" var="obj" value="#{preguntasBean.dataModel}" selection="#{preguntasBean.selectedPregunta}" 
