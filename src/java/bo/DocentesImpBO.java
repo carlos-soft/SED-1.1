@@ -26,5 +26,9 @@ public class DocentesImpBO implements DocentesBO{
     public List<Docentes> getAll() {
         return null;
     }
+
+    public Docentes getFromAlumno(int idGrupo) {
+        return docentesDAO.getFromAlumno(idGrupo);
+    }
     
 }

@@ -55,7 +55,7 @@ public class AlumnosImpBO implements AlumnosBO {
         return alumnosDAO.getAlumnosFromGroupId(g);
     }
 
-    public String validarAlumno(String control) {
+    public List<Object> validarAlumno(String control) {
         return alumnosDAO.validarAlumno(control);
     }
 

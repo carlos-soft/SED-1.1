@@ -46,15 +46,21 @@ body{
     font-family:Tahoma;
 }
 
-#bienvenida{
-    text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
-        0 0 0.2em #87F
-}
-
 .activado, .nombreDelGrupo{
     color: #71ae38;
     font-weight: bold;
 }
+
+.alumno{
+    color: #71ae38;
+    font-family:Tahoma;
+}
+
+.docente{
+    color: #eb8a14;
+    font-family:Tahoma;
+}
+
 .noEvaluado{
     background: #ff6666;
     color: #ffffff;
@@ -118,6 +124,11 @@ A.banco:hover {
 }
 
 .noContestada{
+    background: #ffcccc;
+    color: #a10808; 
+}
+
+.combo{
     background: #ffcccc;
     color: #a10808; 
 }

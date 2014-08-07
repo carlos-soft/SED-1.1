@@ -22,7 +22,7 @@ public class FiltroAlumno implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         resp.setHeader("Cache-Control", "no-cache");
-        Object userInSession = session.getAttribute("mensage");
+        Object userInSession = session.getAttribute("alumno");
         if (userInSession == null) {
             req.getRequestDispatcher("/alumnos/loginAlumno.xhtml").forward(request, response);
             return;

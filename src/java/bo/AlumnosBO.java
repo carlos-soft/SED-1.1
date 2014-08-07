@@ -9,5 +9,5 @@ public interface AlumnosBO {
     void insert(SubirArchivoBean obj);
     List<Alumnos> getAll();
     List<Alumnos> getAlumnosFromGroupId(GruposJoinDocentes obj);
-    String validarAlumno(String control);
+    List<Object> validarAlumno(String control);
 }

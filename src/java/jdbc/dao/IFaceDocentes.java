@@ -7,4 +7,5 @@ public interface IFaceDocentes {
 
     void insert(Docentes obj);
     List<Docentes> getAll();
+    Docentes getFromAlumno(int idGrupo);
 }

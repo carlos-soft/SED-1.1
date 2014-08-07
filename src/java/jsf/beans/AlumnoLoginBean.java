@@ -2,6 +2,7 @@ package jsf.beans;
 
 import bo.AlumnosImpBO;
 import bo.EvaluacionImpBO;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -72,8 +73,9 @@ public class AlumnoLoginBean {
     }
     
     public void validar() {
+        List<Object> l = alumnosBO.validarAlumno(control);
         try {
-            switch(alumnosBO.validarAlumno(control)){
+            switch(l.get(0).toString()){
                 case "no existe":
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
                     (FacesMessage.SEVERITY_FATAL, "No existe !!", "El numero de control es invalido."));
@@ -86,6 +88,7 @@ public class AlumnoLoginBean {
                     ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                     Map<String, Object> sessionMap = ec.getSessionMap();
                     sessionMap.put("mensage", "valido");
+                    sessionMap.put("alumno", l.get(1));
                     ec.redirect(ec.getRequestContextPath() + "/alumnos/evaluacion.xhtml");
                     break;
             }            

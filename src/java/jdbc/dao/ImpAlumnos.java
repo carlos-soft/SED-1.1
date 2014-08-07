@@ -1,5 +1,6 @@
 package jdbc.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import persistencia.Alumnos;
@@ -23,17 +24,20 @@ public class ImpAlumnos extends HibernateDaoSupport implements IFaceAlumnos{
                 "' and idGrupo='"+g.getIdGrupo()+"'");
     }
 
-    public String validarAlumno(String control) {
+    public List<Object> validarAlumno(String control) {
+        List<Object> l = new ArrayList<Object>();
         try {
             Alumnos a =  (Alumnos) getHibernateTemplate().find("from Alumnos where control='"+control+"'").get(0);
             if (a.isEvaluado()) {
-                return "ya evaluado";
+                l.add("ya evaluado");
             } else {
-                return "valido";
+                l.add("valido");
+                l.add(a);
             }
         } catch (Exception e) {
-            return "no existe";
+            l.add("no existe");
         }
+        return l;
     }
     
 }
