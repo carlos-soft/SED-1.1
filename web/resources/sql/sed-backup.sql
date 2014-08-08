@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-08-2014 a las 22:10:50
+-- Tiempo de generación: 08-08-2014 a las 21:55:21
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.11
 
@@ -200,6 +200,53 @@ INSERT INTO `preguntasjoinevaluacion` (`idPregunta`, `idEvaluacion`) VALUES
 (31, 2),
 (32, 5),
 (33, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registros`
+--
+
+CREATE TABLE IF NOT EXISTS `registros` (
+  `idRegistro` int(11) NOT NULL AUTO_INCREMENT,
+  `idAlumno` int(11) NOT NULL,
+  `comentario` longtext COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY (`idRegistro`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `registros`
+--
+
+INSERT INTO `registros` (`idRegistro`, `idAlumno`, `comentario`) VALUES
+(1, 2, 'adfsdf');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `resultados`
+--
+
+CREATE TABLE IF NOT EXISTS `resultados` (
+  `idResultados` int(11) NOT NULL AUTO_INCREMENT,
+  `idRegistro` int(11) NOT NULL,
+  `idPregunta` int(11) NOT NULL,
+  `answer` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY (`idResultados`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `resultados`
+--
+
+INSERT INTO `resultados` (`idResultados`, `idRegistro`, `idPregunta`, `answer`) VALUES
+(1, 1, 3, '10'),
+(2, 1, 4, '10'),
+(3, 1, 5, '9'),
+(4, 1, 28, '9'),
+(5, 1, 29, '8'),
+(6, 1, 30, '6'),
+(7, 1, 31, '9');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

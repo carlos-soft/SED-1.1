@@ -79,6 +79,10 @@
             <property-name>docentesBO</property-name>
             <value>#{docentesBO}</value>
         </managed-property>
+        <managed-property>
+            <property-name>registrosBO</property-name>
+            <value>#{registrosBO}</value>
+        </managed-property>
     </managed-bean>
     
     <managed-bean>

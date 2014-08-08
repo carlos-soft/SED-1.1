@@ -53,6 +53,8 @@
                 <value>/persistencia/Alumnos.hbm.xml</value>
                 <value>/persistencia/Preguntas.hbm.xml</value>
                 <value>/persistencia/PreguntasJoinEvaluacion.hbm.xml</value>
+                <value>/persistencia/Registros.hbm.xml</value>
+                <value>/persistencia/Resultados.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -73,6 +75,9 @@
     <bean id="preguntasDAO" class="jdbc.dao.ImpPreguntas">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    <bean id="registrosDAO" class="jdbc.dao.ImpRegistros">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
     
     
     <!-- BO's -->
@@ -90,6 +95,9 @@
     </bean>
     <bean id="preguntasBO" class="bo.PreguntasImpBO">
         <property name="preguntasDAO" ref="preguntasDAO"></property>
+    </bean>
+    <bean id="registrosBO" class="bo.RegistrosImpBO">
+        <property name="registrosDAO" ref="registrosDAO"></property>
     </bean>
     
 </beans>

@@ -40,6 +40,7 @@
                                                 pregunta.answer eq 'no' ? 'noContestada': 'par' : 
                                                 pregunta.answer eq 'no' ? 'noContestada': 'impar'}">
                             <p:selectOneMenu id="respuestas" value="#{pregunta.answer}">
+                                <f:selectItem itemLabel="- Respuesta -" itemValue="" noSelectionOption="true"/>
                                 <f:selectItem itemLabel="Siempre" itemValue="siempre" />
                                 <f:selectItem itemLabel="Casi Siempre" itemValue="casi siempre" /> 
                                 <f:selectItem itemLabel="Algunas Veces" itemValue="algunas veces" />

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/08/2014 01:54:49 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="persistencia.Registros" table="registros" catalog="sed">
+        <id name="idRegistro" type="java.lang.Integer">
+            <column name="idRegistro" />
+            <generator class="identity" />
+        </id>
+        <property name="idAlumno" type="int">
+            <column name="idAlumno" not-null="true" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

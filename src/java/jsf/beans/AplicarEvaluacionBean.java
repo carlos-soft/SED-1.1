@@ -2,6 +2,7 @@ package jsf.beans;
 
 import bo.DocentesImpBO;
 import bo.PreguntasImpBO;
+import bo.RegistrosImpBO;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -19,6 +20,8 @@ public class AplicarEvaluacionBean {
     private String alumno;
     private String docente;
     private DocentesImpBO docentesBO;
+    private RegistrosImpBO registrosBO;
+    private Alumnos a;
 
     public AplicarEvaluacionBean() {
     }
@@ -71,6 +74,18 @@ public class AplicarEvaluacionBean {
         this.docentesBO = docentesBO;
     }
 
+    public Alumnos getA() {
+        return a;
+    }
+
+    public RegistrosImpBO getRegistrosBO() {
+        return registrosBO;
+    }
+
+    public void setRegistrosBO(RegistrosImpBO registrosBO) {
+        this.registrosBO = registrosBO;
+    }
+
     @PostConstruct
     public void obtenerPreguntasAEvaluar() {
         preguntas = preguntasBO.getAllFromPreguntaEvaluacion();
@@ -80,8 +95,9 @@ public class AplicarEvaluacionBean {
     public void informacion() {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> sessionMap = ec.getSessionMap();
-        this.alumno = (String) ((Alumnos) sessionMap.get("alumno")).getNombre();
-        this.docente = (String) docentesBO.getFromAlumno(((Alumnos) sessionMap.get("alumno")).getIdGrupo()).getNombre();
+        this.a = (Alumnos) sessionMap.get("alumno");
+        this.alumno = a.getNombre();
+        this.docente = (String) docentesBO.getFromAlumno(a.getIdGrupo()).getNombre();
     }
 
     public void guardarEvaluacion() {
@@ -97,6 +113,7 @@ public class AplicarEvaluacionBean {
             if (comentario.equals("")) {
                 comentario = "Ninguno";
             }
+            registrosBO.insert(this);
         } else {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "Falta contestar la(s) preguntas."));
