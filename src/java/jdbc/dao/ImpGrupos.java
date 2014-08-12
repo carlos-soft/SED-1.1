@@ -26,7 +26,7 @@ public class ImpGrupos extends HibernateDaoSupport implements IFaceGrupos {
     public List<GruposJoinDocentes> getAllGroupsFromEvaluacion(Evaluaciones ev) {
         Session session = getHibernateTemplate().getSessionFactory().openSession();
         List data = null;
-        List<GruposJoinDocentes> l = new ArrayList<>();
+        List<GruposJoinDocentes> l = new ArrayList<GruposJoinDocentes>();
         try {
             Transaction tx = session.beginTransaction();
             String sql = "SELECT g.idGrupo, g.nombre as grupo, d.idDocente, d.nombre as docente, g.nivel, g.idEvaluacion, "

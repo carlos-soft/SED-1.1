@@ -36,7 +36,6 @@ public class SubirArchivoBean {
     String grupo, materia, profesor, nivel;
     List<String> claves;
     List<String> nombres;
-    private List<GruposJoinDocentes> lista;
     private GruposJoinDocentes selectedGrupo;
     private GruposDataModel dataModel;
     private List<Alumnos> alumnosFromGroup;
@@ -101,15 +100,7 @@ public class SubirArchivoBean {
     public List<String> getNombres() {
         return nombres;
     }
-
-    public List<GruposJoinDocentes> getLista() {
-        return lista;
-    }
-
-    public void setLista(List<GruposJoinDocentes> lista) {
-        this.lista = lista;
-    }
-
+    
     public GruposJoinDocentes getSelectedGrupo() {
         return selectedGrupo;
     }
@@ -258,8 +249,7 @@ public class SubirArchivoBean {
     
     @PostConstruct
     public void getAllGrupos() {
-        setLista(gruposBO.getAllGroupsFromEvaluacion(activa));
-        dataModel = new GruposDataModel(getLista());
+        dataModel = new GruposDataModel(gruposBO.getAllGroupsFromEvaluacion(evaluacionBO.getEvaluacionActiva().get(0)));
     }
 
     public void obtenerAlumnosFromGroupId(){

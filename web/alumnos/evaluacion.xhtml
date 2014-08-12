@@ -1,62 +1,53 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <ui:composition template="../masterLayout.xhtml">
-            <ui:define name="content">
-                <h:form>
-                    <p align="center">
-                        <p:outputLabel>Alumno: </p:outputLabel>
-                        <p:outputLabel styleClass="alumno">#{aplicarEvaluacionBean.alumno}</p:outputLabel><br/>
-                        <p:outputLabel>Docente: </p:outputLabel>
-                        <p:outputLabel styleClass="docente">#{aplicarEvaluacionBean.docente}</p:outputLabel>
-                    </p>
-                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /><br/>
-                    <p:dataTable id="tabalPreguntas" value="#{aplicarEvaluacionBean.preguntas}" var="pregunta">
-                        <f:facet name="header">
-                            Evaluacion
-                        </f:facet>
-                        <p:column headerText="No." width="3%" 
-                                  styleClass="#{(aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0 ? 
-                                                pregunta.answer eq 'no' ? 'noContestada': 'par' : 
-                                                pregunta.answer eq 'no' ? 'noContestada': 'impar'}">
-                                  #{aplicarEvaluacionBean.preguntas.indexOf(pregunta)+1}.
-                        </p:column>
-                        <p:column id="descripcion" headerText="Pregunta" width="77%" 
-                                  styleClass="#{(aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0 ? 
-                                                pregunta.answer eq 'no' ? 'noContestada': 'par' : 
-                                                pregunta.answer eq 'no' ? 'noContestada': 'impar'}">
-                                  #{pregunta.descripcion}
-                        </p:column>
-                        <p:column headerText="Respuesta" width="20%" 
-                                  styleClass="#{(aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0 ?
-                                                pregunta.answer eq 'no' ? 'noContestada': 'par' : 
-                                                pregunta.answer eq 'no' ? 'noContestada': 'impar'}">
-                            <p:selectOneMenu id="respuestas" value="#{pregunta.answer}">
-                                <f:selectItem itemLabel="- Respuesta -" itemValue="" noSelectionOption="true"/>
-                                <f:selectItem itemLabel="Siempre" itemValue="siempre" />
-                                <f:selectItem itemLabel="Casi Siempre" itemValue="casi siempre" /> 
-                                <f:selectItem itemLabel="Algunas Veces" itemValue="algunas veces" />
-                                <f:selectItem itemLabel="Rara Vez" itemValue="rara vez" />
-                                <f:selectItem itemLabel="Nunca" itemValue="nunca" />
-                            </p:selectOneMenu>
-                        </p:column>
-                    </p:dataTable><br/>
-                    <p:fieldset id="comentarios" legend="Comentarios" style="margin-bottom:20px;" >
-                        <p:inputTextarea rows="6" cols="80" value="#{aplicarEvaluacionBean.comentario}" />
-                    </p:fieldset><br/><br/>
-                    <p align="center"><p:commandButton value="Enviar Prueba" action="#{aplicarEvaluacionBean.guardarEvaluacion}" update="tabalPreguntas"/></p>
-                    <p:separator/>
-                </h:form>
-            </ui:define>
-        </ui:composition>
-    </h:body>
-</html>
-
+<ui:composition template="../masterLayout.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="content">
+        <h:form>
+            <p align="center">
+                <p:outputLabel>Alumno: </p:outputLabel>
+                <p:outputLabel styleClass="alumno">#{aplicarEvaluacionBean.alumno}</p:outputLabel><br/>
+                <p:outputLabel>Docente: </p:outputLabel>
+                <p:outputLabel styleClass="docente">#{aplicarEvaluacionBean.docente}</p:outputLabel>
+            </p>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /><br/>
+            <p:dataTable id="tabalPreguntas" value="#{aplicarEvaluacionBean.preguntas}" var="pregunta">
+                <f:facet name="header">
+                    Evaluacion
+                </f:facet>
+                <p:column headerText="No." width="3%" 
+                          styleClass="#{(aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0 ? 
+                                        pregunta.answer eq 'no' ? 'noContestada': 'par' : 
+                                        pregunta.answer eq 'no' ? 'noContestada': 'impar'}">
+                          #{aplicarEvaluacionBean.preguntas.indexOf(pregunta)+1}.
+                </p:column>
+                <p:column id="descripcion" headerText="Pregunta" width="77%" 
+                          styleClass="#{(aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0 ? 
+                                        pregunta.answer eq 'no' ? 'noContestada': 'par' : 
+                                        pregunta.answer eq 'no' ? 'noContestada': 'impar'}">
+                          #{pregunta.descripcion}
+                </p:column>
+                <p:column headerText="Respuesta" width="20%" 
+                          styleClass="#{(aplicarEvaluacionBean.preguntas.indexOf(pregunta) % 2) eq 0 ?
+                                        pregunta.answer eq 'no' ? 'noContestada': 'par' : 
+                                        pregunta.answer eq 'no' ? 'noContestada': 'impar'}">
+                    <p:selectOneMenu id="respuestas" value="#{pregunta.answer}">
+                        <f:selectItem itemLabel="- Respuesta -" itemValue="" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Siempre" itemValue="siempre" />
+                        <f:selectItem itemLabel="Casi Siempre" itemValue="casi siempre" /> 
+                        <f:selectItem itemLabel="Algunas Veces" itemValue="algunas veces" />
+                        <f:selectItem itemLabel="Rara Vez" itemValue="rara vez" />
+                        <f:selectItem itemLabel="Nunca" itemValue="nunca" />
+                    </p:selectOneMenu>
+                </p:column>
+            </p:dataTable><br/>
+            <p:fieldset id="comentarios" legend="Comentarios" style="margin-bottom:20px;" >
+                <p:inputTextarea rows="6" cols="80" value="#{aplicarEvaluacionBean.comentario}" />
+            </p:fieldset><br/><br/>
+            <p align="center"><p:commandButton value="Enviar Prueba" action="#{aplicarEvaluacionBean.guardarEvaluacion}" update="tabalPreguntas"/></p>
+            <p:separator/>
+        </h:form>
+    </ui:define>
+</ui:composition>

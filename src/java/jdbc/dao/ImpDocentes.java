@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import persistencia.Docentes;
-import persistencia.GruposJoinDocentes;
+import persistencia.Evaluaciones;
 
 public class ImpDocentes extends HibernateDaoSupport implements IFaceDocentes {
 
@@ -19,6 +19,34 @@ public class ImpDocentes extends HibernateDaoSupport implements IFaceDocentes {
 
     public List<Docentes> getAll() {
         return null;
+    }
+
+    public List<Docentes> getAllFromEvaluacion() {
+        int activa = ((Evaluaciones) getHibernateTemplate().find("from Evaluaciones where estado='activada'").get(0)).getIdEvaluacion();
+        Session session = getHibernateTemplate().getSessionFactory().openSession();
+        List data = null;
+        List<Docentes> l = new ArrayList<Docentes>();
+        try {
+            Transaction tx = session.beginTransaction();
+            String sql = "SELECT d.idDocente, d.nombre "
+                    + "FROM Evaluaciones e JOIN Grupos g JOIN Docentes d "
+                    + "where g.idDocente = d.idDocente and g.idEvaluacion = '"+activa+"' "
+                    + "group by g.idDocente";
+            SQLQuery query = session.createSQLQuery(sql);
+            query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+            data = query.list();
+            Docentes d = null;
+            for (Object object : data) {
+                Map row = (Map) object;
+                d = new Docentes();
+                d.setIdDocente(Integer.parseInt(row.get("idDocente").toString()));
+                d.setNombre(row.get("nombre").toString());
+                l.add(d);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return l;
     }
 
     public Docentes getFromAlumno(int idGrupo) {

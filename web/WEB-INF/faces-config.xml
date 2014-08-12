@@ -28,7 +28,7 @@
     <managed-bean>
         <managed-bean-name>subirArchivoBean</managed-bean-name>
         <managed-bean-class>jsf.beans.SubirArchivoBean</managed-bean-class>
-        <managed-bean-scope>application</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>evaluacionBO</property-name>
             <value>#{evaluacionBO}</value>
@@ -96,6 +96,16 @@
         <managed-property>
             <property-name>alumnosBO</property-name>
             <value>#{alumnosBO}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>reportesDocentesBean</managed-bean-name>
+        <managed-bean-class>jsf.beans.ReportesDocentesBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>docentesBO</property-name>
+            <value>#{docentesBO}</value>
         </managed-property>
     </managed-bean>
 </faces-config>

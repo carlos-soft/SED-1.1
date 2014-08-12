@@ -7,5 +7,6 @@ import persistencia.Docentes;
 public interface DocentesBO {
     void insert(SubirArchivoBean obj);
     List<Docentes> getAll();
+    List<Docentes> getAllFromEvaluacion();
     Docentes getFromAlumno(int idGrupo);
 }

@@ -1,43 +1,36 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <ui:composition>
-            <h:form> 
-                <p:menubar>
-                    <p:submenu label="Alumnos" icon="ui-icon-document">
-                        <p:menuitem value="Aplicar Evaluacion" url="/alumnos/aplicarEvaluacion.xhtml" icon="ui-icon-contact"/>
-                    </p:submenu>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:form> 
+        <p:menubar>
+            <p:submenu label="Alumnos" icon="ui-icon-document">
+                <p:menuitem value="Aplicar Evaluacion" url="/alumnos/aplicarEvaluacion.xhtml" icon="ui-icon-contact"/>
+            </p:submenu>
 
-                    <p:submenu label="Admin" icon="ui-icon-pencil">
-                        <p:submenu label="Evaluaciones" icon="ui-icon-pencil">
-                            <p:menuitem value="Administrar" url="/admin/addEvaluacion.xhtml" icon="ui-icon-gear" />
-                            <p:menuitem value="Grupos" url="/admin/subirGrupos.xhtml" icon="ui-icon-gear" />
-                        </p:submenu>
-                        <p:submenu label="Preguntas" icon="ui-icon-pencil">
-                            <p:menuitem value="Banco de Preguntas" url="/admin/addPregunta.xhtml" action="#{menuBean.despachador('addPregunta')}" icon="ui-icon-gear"/>
-                            <p:menuitem value="Asignar a Evaluacion" url="/admin/asignarPreguntas.xhtml" action="#{menuBean.despachador('asignarPreguntas')}" icon="ui-icon-gear"/>
-                        </p:submenu>
-                    </p:submenu>
+            <p:submenu label="Admin" icon="ui-icon-pencil">
+                <p:submenu label="Evaluaciones" icon="ui-icon-pencil">
+                    <p:menuitem value="Administrar" url="/admin/addEvaluacion.xhtml" icon="ui-icon-gear" />
+                    <p:menuitem value="Grupos" url="/admin/subirGrupos.xhtml" icon="ui-icon-gear" />
+                </p:submenu>
+                <p:submenu label="Preguntas" icon="ui-icon-pencil">
+                    <p:menuitem value="Banco de Preguntas" url="/admin/addPregunta.xhtml" action="#{menuBean.despachador('addPregunta')}" icon="ui-icon-gear"/>
+                    <p:menuitem value="Asignar a Evaluacion" url="/admin/asignarPreguntas.xhtml" action="#{menuBean.despachador('asignarPreguntas')}" icon="ui-icon-gear"/>
+                </p:submenu>
+                <p:submenu label="Docentes" icon="ui-icon-pencil">
+                    <p:menuitem value="Reportes" icon="ui-icon-document" url="/admin/reportesDocentes.xhtml" />
+                </p:submenu>
+            </p:submenu>
 
-                    <p:submenu label="Help" icon="ui-icon-help">
-                        <p:menuitem value="Info" icon="ui-icon-gear" url="#" />
-                    </p:submenu>
+            <p:submenu label="Help" icon="ui-icon-help">
+                <p:menuitem value="Info" icon="ui-icon-gear" url="#" />
+            </p:submenu>
 
-                    <f:facet name="options">
-                        <p:inputText style="margin-right:10px"/>
-                        <p:commandButton type="button" value="Buscar" icon="ui-icon-search" />
-                    </f:facet>
-                </p:menubar>
-            </h:form>
-        </ui:composition>
-    </h:body>
-</html>
-
+            <f:facet name="options">
+                <p:inputText style="margin-right:10px"/>
+                <p:commandButton type="button" value="Buscar" icon="ui-icon-search" />
+            </f:facet>
+        </p:menubar>
+    </h:form>
+</ui:composition>

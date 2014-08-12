@@ -132,3 +132,10 @@ A.banco:hover {
     background: #ffcccc;
     color: #a10808; 
 }
+
+#tablaSola{
+    height: 100%;
+    width: 75%;
+    position: absolute;
+    left: 10%;
+}
