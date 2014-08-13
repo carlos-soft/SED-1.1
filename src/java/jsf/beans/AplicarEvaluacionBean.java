@@ -119,3 +119,28 @@ public class AplicarEvaluacionBean {
         }
     }
 }
+/*
+select a.nombre as alumno, d.nombre as docente, p.idPregunta, p.descripcion, res.answer, reg.comentario
+from Docentes d
+join Grupos g
+join Alumnos a
+join Registros reg
+join Resultados res
+join Preguntas p
+join preguntasjoinevaluacion pe
+join Evaluaciones e
+where d.idDocente = idDoc and
+	d.idDocente = g.idDocente and
+	g.idGrupo = a.idGrupo and 
+	a.idAlumno = reg.idAlumno and
+	reg.idRegistro = res.idRegistro and
+	res.idPregunta = p.idPregunta and
+	p.idPregunta = pe.idPregunta and
+	pe.idEvaluacion = e.idEvaluacion;
+
+
+
+call reporte(1);
+
+DROP PROCEDURE IF EXISTS reporte;
+*/
