@@ -147,9 +147,18 @@ public class SubirArchivoBean {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ServletContext context = ((HttpServletRequest) ctx.getExternalContext().getRequest()).getSession().getServletContext();
         String path = context.getRealPath("grupos");
+        File dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
         path = path.replace("\\", "\\\\");
         path += "\\\\";
-        path += activa.getLenguaje() + activa.getFechaInicio() + activa.getFechaFin() + "\\\\" + fileName;
+        path += activa.getLenguaje() + activa.getFechaInicio() + activa.getFechaFin();
+        dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        path += "\\\\" + fileName;
         try {
             File f = new File(path);
             OutputStream out = new FileOutputStream(f);
@@ -241,15 +250,12 @@ public class SubirArchivoBean {
     }
 
     public void publicarMensaje() {
-        activa = evaluacionBO.getEvaluacionActiva().get(0);
-        getAllGrupos();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                 FacesMessage.SEVERITY_WARN, "'"+activa.getLenguaje() + ": " + activa.getFechaInicio() + "-" + activa.getFechaFin()+"'.", " Evaluacion activa."));
     }
     
-    @PostConstruct
     public void getAllGrupos() {
-        dataModel = new GruposDataModel(gruposBO.getAllGroupsFromEvaluacion(evaluacionBO.getEvaluacionActiva().get(0)));
+        dataModel = new GruposDataModel(gruposBO.getAllGroupsFromEvaluacion(activa));
     }
 
     public void obtenerAlumnosFromGroupId(){
@@ -265,5 +271,11 @@ public class SubirArchivoBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error !!", "Ocurrio un error a la hora de eliminar el registro."));
             e.printStackTrace();
         }
+    }
+    
+    @PostConstruct
+    public void obtenerActiva(){
+        this.activa = evaluacionBO.getEvaluacionActiva().get(0);
+        dataModel = new GruposDataModel(gruposBO.getAllGroupsFromEvaluacion(activa));
     }
 }
