@@ -24,9 +24,7 @@ public class LogginFilter implements Filter{
         resp.setHeader("Cache-Control", "no-cache");
         Object userInSession = session.getAttribute("usuarioLogeado");
         if(userInSession == null) {
-            System.out.println("Session nula . . .");
-            request.setAttribute("errorAccesos", "La sesion esta nula.");
-            req.getRequestDispatcher("/login.faces").forward(request, response);
+            req.getRequestDispatcher("/admin/loginAdmin.xhtml").forward(request, response);
             return;
         }
         chain.doFilter(request, response);

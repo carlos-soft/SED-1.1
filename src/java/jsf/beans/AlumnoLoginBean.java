@@ -66,7 +66,7 @@ public class AlumnoLoginBean {
     public void aplicar(){
         try {
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-            ec.redirect(ec.getRequestContextPath() + "/alumnos/evaluacion.xhtml");
+            ec.redirect(ec.getRequestContextPath() + "/evaluacion.xhtml");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -74,6 +74,7 @@ public class AlumnoLoginBean {
     
     public void validar() {
         List<Object> l = alumnosBO.validarAlumno(control);
+        String dir = "";
         try {
             switch(l.get(0).toString()){
                 case "no existe":
@@ -89,7 +90,7 @@ public class AlumnoLoginBean {
                     Map<String, Object> sessionMap = ec.getSessionMap();
                     sessionMap.put("mensage", "valido");
                     sessionMap.put("alumno", l.get(1));
-                    ec.redirect(ec.getRequestContextPath() + "/alumnos/evaluacion.xhtml");
+                    ec.redirect(ec.getRequestContextPath() + "/evaluacion.xhtml");
                     break;
             }            
         } catch (Exception ex) {

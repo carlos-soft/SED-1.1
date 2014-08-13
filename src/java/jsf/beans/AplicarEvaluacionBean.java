@@ -41,7 +41,7 @@ public class AplicarEvaluacionBean {
     public void setPreguntas(List<Preguntas> preguntas) {
         this.preguntas = preguntas;
     }
-
+    
     public String getComentario() {
         return comentario;
     }
@@ -88,7 +88,7 @@ public class AplicarEvaluacionBean {
 
     @PostConstruct
     public void obtenerPreguntasAEvaluar() {
-        preguntas = preguntasBO.getAllFromPreguntaEvaluacion();
+        this.preguntas = preguntasBO.getAllFromPreguntaEvaluacion();
         informacion();
     }
 
@@ -102,11 +102,10 @@ public class AplicarEvaluacionBean {
 
     public void guardarEvaluacion() {
         boolean error = false;
-        for (int i = 0; i < preguntas.size(); i++) {
-            Preguntas p1 = preguntas.get(i);
-            if (p1.getAnswer().equals("")) {
+        for (Preguntas p1 : preguntas) {
+            if (p1.getAnswer() == null) {
                 error = true;
-                preguntas.get(i).setAnswer("no");
+                p1.setAnswer("no");
             }
         }
         if (!error) {

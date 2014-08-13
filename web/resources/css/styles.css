@@ -139,3 +139,10 @@ A.banco:hover {
     position: absolute;
     left: 10%;
 }
+
+.nota{
+    font-size: 16px;
+    color: #ff6666;
+    font-family:Tahoma;
+    font-weight: bold;
+}
