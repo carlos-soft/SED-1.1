@@ -107,5 +107,9 @@
             <property-name>docentesBO</property-name>
             <value>#{docentesBO}</value>
         </managed-property>
+        <managed-property>
+            <property-name>reportesBO</property-name>
+            <value>#{reportesBO}</value>
+        </managed-property>
     </managed-bean>
 </faces-config>

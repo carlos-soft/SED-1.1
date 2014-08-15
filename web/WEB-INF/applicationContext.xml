@@ -78,6 +78,9 @@
     <bean id="registrosDAO" class="jdbc.dao.ImpRegistros">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    <bean id="reportesDAO" class="jdbc.dao.ImpReportes">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
     
     
     <!-- BO's -->
@@ -98,6 +101,9 @@
     </bean>
     <bean id="registrosBO" class="bo.RegistrosImpBO">
         <property name="registrosDAO" ref="registrosDAO"></property>
+    </bean>
+    <bean id="reportesBO" class="bo.ReportesImpBO">
+        <property name="reportesDAO" ref="reportesDAO"></property>
     </bean>
     
 </beans>

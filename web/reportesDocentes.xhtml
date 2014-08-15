@@ -8,7 +8,8 @@
         <div id="tablaSola">
             <h:form>
                 <p:contextMenu for="docentes">
-                    <p:menuitem value="Imprimir" icon="ui-icon-disk" />
+                    <p:menuitem value="Imprimir" icon="ui-icon-search" oncomplete="PF('reporteDialog').show()" 
+                                update="@form :reporteDocente:reporteDetail" action="#{reportesDocentesBean.mostrarReporte()}"/>
                 </p:contextMenu>
                 <p:dataTable id="docentes" var="obj" value="#{reportesDocentesBean.dataModel}" rowKey="#{obj.idDocente}"
                              selection="#{reportesDocentesBean.selectedDocente}" selectionMode="single" >
@@ -22,6 +23,23 @@
                         <h:outputText value="#{obj.nombre}" />
                     </p:column>
                 </p:dataTable>
+            </h:form>
+            <h:form id="reporteDocente">
+                <p:dialog header="Reporte" id="reporteDialog" widgetVar="reporteDialog" modal="true" showEffect="fade" hideEffect="fade" 
+                          resizable="false" height="700" width="800">
+                    <p:outputPanel id="reporteDetail">
+                        <p:dataTable value="#{reportesDocentesBean.preguntas}" var="pre">
+                            <p:column headerText="Pregunta">
+                                #{pre.descripcion}
+                            </p:column>
+                            <ui:repeat value="" var="">
+                                <p:column>
+                                    
+                                </p:column>
+                            </ui:repeat>
+                        </p:dataTable>
+                    </p:outputPanel>
+                </p:dialog>
             </h:form>
         </div>
     </ui:define>
