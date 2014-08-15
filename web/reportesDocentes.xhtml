@@ -29,9 +29,12 @@
                           hideEffect="fade" resizable="false" height="700" width="800">
                     <p:outputPanel id="reporteDetail">
                         <p:dataTable value="#{reportesDocentesBean.columnas}" var="c">
-                            <p:column headerText="Alumno">
-                                #{c}
-                            </p:column>
+                            <p:columns value="#{dtColumnsView.columns}" var="column" columnIndexVar="colIndex" sortBy="#{car[column.property]}" filterBy="#{car[column.property]}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{column.header}" />
+                                </f:facet>
+                                <h:outputText value="#{car[column.property]}" />
+                            </p:columns>
                         </p:dataTable>
                     </p:outputPanel>
                 </p:dialog>

@@ -53,20 +53,18 @@ public class ImpReportes extends HibernateDaoSupport implements IFaceReportes {
             SQLQuery query = session.createSQLQuery(sql);
             query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
             data = query.list();
-            int salto = 0;
+            int alumnos = 0;
             for (Object object : data) {
                 Map row = (Map) object;
-                salto = Integer.parseInt(row.get("total").toString());
+                alumnos = Integer.parseInt(row.get("total").toString());
             }
-            for (int i = 0; i < salto; i++) {
+            for (int i = 0; i < alumnos; i++) {
                 l.add(new ArrayList<Integer>());
             }
-            System.out.println("alumnos = "+salto);
-            System.out.println(idEvaluacion);
             String sql2 = "select count(pe.idPregunta) as pregun "
                     + "from PreguntasJoinEvaluacion pe join Preguntas p "
-                    + "where p.idPregunta = pe.idPregunta and pe.idEvaluacion = '"+idEvaluacion+"'";
-            
+                    + "where p.idPregunta = pe.idPregunta and pe.idEvaluacion = '" + idEvaluacion + "'";
+
             SQLQuery query2 = session.createSQLQuery(sql2);
             query2.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
             data2 = query2.list();
@@ -80,7 +78,7 @@ public class ImpReportes extends HibernateDaoSupport implements IFaceReportes {
             System.out.println(data3);
             int c = 0;
             for (List<Integer> l1 : l) {
-                for (int j = 0; j < preguntas ; j++, c++) {
+                for (int j = 0; j < preguntas; j++, c++) {
                     l1.add(data3.get(c));
                 }
             }
@@ -90,6 +88,58 @@ public class ImpReportes extends HibernateDaoSupport implements IFaceReportes {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        return l;
+    }
+
+    public List<List<Integer>> getFilas(int idDocente) {
+        List data = null;
+        List data2 = null;
+        List<Integer> data3 = null;
+        List<List<Integer>> l = new ArrayList<>();
+        try {
+            Session session = getHibernateTemplate().getSessionFactory().openSession();
+            Transaction tx = session.beginTransaction();
+            int idEvaluacion = ((Integer) session.createQuery("select idEvaluacion from Evaluaciones where estado = 'activada'").iterate().next());
+            String sql = "select count(pe.idPregunta) as pregun "
+                    + "from PreguntasJoinEvaluacion pe join Preguntas p "
+                    + "where p.idPregunta = pe.idPregunta and pe.idEvaluacion = '" + idEvaluacion + "'";
+
+            SQLQuery query = session.createSQLQuery(sql);
+            query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+            data = query.list();
+            int preguntas = 0;
+            for (Object object : data) {
+                Map row = (Map) object;
+                preguntas = Integer.parseInt(row.get("pregun").toString());
+            }
+            for (int i = 0; i < preguntas; i++) {
+                l.add(new ArrayList<Integer>());
+            }
+            String sql2 = "select count(distinct alumno) as total "
+                    + "from reporte "
+                    + "where idDocente = '" + idDocente + "'";
+            SQLQuery query2 = session.createSQLQuery(sql2);
+            query2.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+            data2 = query2.list();
+            int alumnos = 0;
+            for (Object object : data2) {
+                Map row = (Map) object;
+                alumnos = Integer.parseInt(row.get("total").toString());
+            }
+            String sql3 = "select answer from reporte where idDocente = '" + idDocente + "'";
+            data3 = session.createSQLQuery(sql3).list();
+            int j = 0, c = 0;
+            System.out.println(data3);
+            for (int i = 0; i < alumnos; i++) {
+                for (; j <= data3.size() && c < preguntas; j++, c++) {
+                    l.get(c).add(data3.get(j));
+                }
+                c = 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(l);
         return l;
     }
 
