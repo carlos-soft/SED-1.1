@@ -40,27 +40,51 @@ public class ImpReportes extends HibernateDaoSupport implements IFaceReportes {
 
     public List<List<Integer>> getColumnas(int idDocente) {
         List data = null;
-        List<List<Integer>> l = new ArrayList<List<Integer>>();
+        List<Integer> data2 = null;
+        List<Integer> data3 = null;
+        List<List<Integer>> l = new ArrayList<>();
         try {
             Session session = getHibernateTemplate().getSessionFactory().openSession();
             Transaction tx = session.beginTransaction();
             int idEvaluacion = ((Integer) session.createQuery("select idEvaluacion from Evaluaciones where estado = 'activada'").iterate().next());
-            int salto = ((Integer) session.createQuery(
-                    "select count(pe.idPregunta) as total from PreguntasJoinEvaluacion pe join Preguntas p " +
-                    "where p.idPregunta = pe.idPregunta and pe.idEvaluacion = '"+idEvaluacion+"'").iterate().next());
+            String sql = "select count(distinct alumno) as total "
+                    + "from reporte "
+                    + "where idDocente = '" + idDocente + "'";
+            SQLQuery query = session.createSQLQuery(sql);
+            query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+            data = query.list();
+            int salto = 0;
+            for (Object object : data) {
+                Map row = (Map) object;
+                salto = Integer.parseInt(row.get("total").toString());
+            }
             for (int i = 0; i < salto; i++) {
                 l.add(new ArrayList<Integer>());
-            }            
-            String sql = "select answer from reporte where idDocente = '"+idDocente+"'";
-            data = session.createSQLQuery(sql).list();
+            }
+            System.out.println("alumnos = "+salto);
+            System.out.println(idEvaluacion);
+            String sql2 = "select count(pe.idPregunta) as pregun "
+                    + "from PreguntasJoinEvaluacion pe join Preguntas p "
+                    + "where p.idPregunta = pe.idPregunta and pe.idEvaluacion = '"+idEvaluacion+"'";
+            
+            SQLQuery query2 = session.createSQLQuery(sql2);
+            query2.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+            data2 = query2.list();
+            int preguntas = 0;
+            for (Object object : data2) {
+                Map row = (Map) object;
+                preguntas = Integer.parseInt(row.get("pregun").toString());
+            }
+            String sql3 = "select answer from reporte where idDocente = '" + idDocente + "'";
+            data3 = session.createSQLQuery(sql3).list();
+            System.out.println(data3);
             int c = 0;
-            for (int i = 0; i < l.size(); i++) {
-                List<Integer> list = l.get(i);
-                for (int j = c; j < data.size(); c++) {
-                    list.add((Integer) data.get(j));
-                    
+            for (List<Integer> l1 : l) {
+                for (int j = 0; j < preguntas ; j++, c++) {
+                    l1.add(data3.get(c));
                 }
             }
+            System.out.println(l);
             tx.commit();
             session.close();
         } catch (Exception ex) {

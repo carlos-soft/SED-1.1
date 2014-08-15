@@ -8,17 +8,17 @@ import persistencia.Docentes;
 import persistencia.Preguntas;
 
 public class ReportesDocentesBean {
-    
+
     private DocentesDataModel dataModel;
     private Docentes selectedDocente;
     private DocentesImpBO docentesBO;
     private ReportesImpBO reportesBO;
     private List<Preguntas> preguntas;
     private List<List<Integer>> columnas;
-    
+
     public ReportesDocentesBean() {
     }
-    
+
     public Docentes getSelectedDocente() {
         return selectedDocente;
     }
@@ -26,7 +26,7 @@ public class ReportesDocentesBean {
     public void setSelectedDocente(Docentes selectedDocente) {
         this.selectedDocente = selectedDocente;
     }
-    
+
     public DocentesDataModel getDataModel() {
         return dataModel;
     }
@@ -62,15 +62,14 @@ public class ReportesDocentesBean {
     public void setColumnas(List<List<Integer>> columnas) {
         this.columnas = columnas;
     }
-    
+
     @PostConstruct
-    public void getAll(){
+    public void getAll() {
         dataModel = new DocentesDataModel(docentesBO.getAllFromEvaluacion());
     }
-    
-    public void mostrarReporte(){
+
+    public void mostrarReporte() {
         this.preguntas = reportesBO.getPreguntas(selectedDocente.getIdDocente());
         this.columnas = reportesBO.getColumnas(selectedDocente.getIdDocente());
-        System.out.println(this.columnas);
     }
 }
