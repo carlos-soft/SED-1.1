@@ -81,6 +81,9 @@
     <bean id="reportesDAO" class="jdbc.dao.ImpReportes">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+    <bean id="administradoresDAO" class="jdbc.dao.ImpAdministradores">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
     
     
     <!-- BO's -->
@@ -104,6 +107,9 @@
     </bean>
     <bean id="reportesBO" class="bo.ReportesImpBO">
         <property name="reportesDAO" ref="reportesDAO"></property>
+    </bean>
+    <bean id="administradoresBO" class="bo.AdministradoresImpBO">
+        <property name="administradoresDAO" ref="administradoresDAO"></property>
     </bean>
     
 </beans>

@@ -41,15 +41,35 @@
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
     
-    <!-- Filtros de seguridad 
+    <!-- Filtros de seguridad -->
     <filter>
         <filter-name>LogginFilter</filter-name>
         <filter-class>filtros.LogginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-    </filter-mapping> -->
+        <url-pattern>/addEvaluacion.xhtml</url-pattern>
+    </filter-mapping> 
+    <filter-mapping>
+        <filter-name>LogginFilter</filter-name>
+        <url-pattern>/addPregunta.xhtml</url-pattern>
+    </filter-mapping> 
+    <filter-mapping>
+        <filter-name>LogginFilter</filter-name>
+        <url-pattern>/asignarPreguntas.xhtml</url-pattern>
+    </filter-mapping> 
+    <filter-mapping>
+        <filter-name>LogginFilter</filter-name>
+        <url-pattern>/reporteFinal.xhtml</url-pattern>
+    </filter-mapping> 
+    <filter-mapping>
+        <filter-name>LogginFilter</filter-name>
+        <url-pattern>/reportesDocentes.xhtml</url-pattern>
+    </filter-mapping> 
+    <filter-mapping>
+        <filter-name>LogginFilter</filter-name>
+        <url-pattern>/subirGrupos.xhtml</url-pattern>
+    </filter-mapping> 
     
     <filter>
         <filter-name>FiltroAlumno</filter-name>

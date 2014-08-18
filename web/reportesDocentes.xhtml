@@ -8,8 +8,7 @@
         <div id="tablaSola">
             <h:form>
                 <p:contextMenu for="docentes">
-                    <p:menuitem value="Imprimir" icon="ui-icon-search" oncomplete="PF('reporteDialog').show()" 
-                                update="@form :reporteDocente:reporteDetail" actionListener="#{reportesDocentesBean.mostrarReporte()}"/>
+                    <p:menuitem value="Imprimir" icon="ui-icon-search" actionListener="#{reportesDocentesBean.mostrarReporte()}"/>
                 </p:contextMenu>
                 <p:dataTable id="docentes" var="obj" value="#{reportesDocentesBean.dataModel}" rowKey="#{obj.idDocente}"
                              selection="#{reportesDocentesBean.selectedDocente}" selectionMode="single" >
@@ -23,21 +22,6 @@
                         <h:outputText value="#{obj.nombre}" />
                     </p:column>
                 </p:dataTable>
-            </h:form>
-            <h:form id="reporteDocente">
-                <p:dialog header="Reporte" id="reporteDialog" widgetVar="reporteDialog" modal="true" showEffect="fade" 
-                          hideEffect="fade" resizable="false" height="700" width="800">
-                    <p:outputPanel id="reporteDetail">
-                        <p:dataTable value="#{reportesDocentesBean.columnas}" var="c">
-                            <p:columns value="#{dtColumnsView.columns}" var="column" columnIndexVar="colIndex" sortBy="#{car[column.property]}" filterBy="#{car[column.property]}">
-                                <f:facet name="header">
-                                    <h:outputText value="#{column.header}" />
-                                </f:facet>
-                                <h:outputText value="#{car[column.property]}" />
-                            </p:columns>
-                        </p:dataTable>
-                    </p:outputPanel>
-                </p:dialog>
             </h:form>
         </div>
     </ui:define>

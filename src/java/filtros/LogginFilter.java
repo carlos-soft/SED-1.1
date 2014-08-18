@@ -22,9 +22,9 @@ public class LogginFilter implements Filter{
         HttpServletResponse resp = (HttpServletResponse)response;
         HttpSession session = req.getSession();
         resp.setHeader("Cache-Control", "no-cache");
-        Object userInSession = session.getAttribute("usuarioLogeado");
+        Object userInSession = session.getAttribute("administrador");
         if(userInSession == null) {
-            req.getRequestDispatcher("/admin/loginAdmin.xhtml").forward(request, response);
+            req.getRequestDispatcher("/loginAdmin.xhtml").forward(request, response);
             return;
         }
         chain.doFilter(request, response);

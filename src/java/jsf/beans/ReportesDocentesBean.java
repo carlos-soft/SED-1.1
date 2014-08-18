@@ -88,12 +88,11 @@ public class ReportesDocentesBean {
         this.preguntas = reportesBO.getPreguntas(selectedDocente.getIdDocente());
         this.columnas = reportesBO.getColumnas(selectedDocente.getIdDocente());
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        Map<String, Object> reqMap = ec.getRequestMap();
+        Map<String, Object> reqMap = ec.getSessionMap();
         reqMap.put("preguntas", preguntas);
         reqMap.put("calificaciones", columnas);
         try {
-            ec.redirect(ec.getRequestContextPath() + "/reporteFinal.jps");
-            //this.filas = reportesBO.getFilas(selectedDocente.getIdDocente());
+            ec.redirect(ec.getRequestContextPath() + "/reporteFinal.jsp");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
