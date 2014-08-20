@@ -66,7 +66,7 @@ public class AlumnoLoginBean {
     public void aplicar(){
         try {
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-            ec.redirect(ec.getRequestContextPath() + "/evaluacion.xhtml");
+            ec.redirect(ec.getRequestContextPath() + "/alumno/evaluacion.xhtml");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -90,7 +90,7 @@ public class AlumnoLoginBean {
                     Map<String, Object> sessionMap = ec.getSessionMap();
                     sessionMap.put("mensage", "valido");
                     sessionMap.put("alumno", l.get(1));
-                    ec.redirect(ec.getRequestContextPath() + "/evaluacion.xhtml");
+                    ec.redirect(ec.getRequestContextPath() + "/alumno/evaluacion.xhtml");
                     break;
             }            
         } catch (Exception ex) {

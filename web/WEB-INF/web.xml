@@ -48,27 +48,27 @@
     </filter>
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/addEvaluacion.xhtml</url-pattern>
+        <url-pattern>/admin/addEvaluacion.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/addPregunta.xhtml</url-pattern>
+        <url-pattern>/admin/addPregunta.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/asignarPreguntas.xhtml</url-pattern>
+        <url-pattern>/admin/asignarPreguntas.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/reporteFinal.xhtml</url-pattern>
+        <url-pattern>/admin/reporteFinal.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/reportesDocentes.xhtml</url-pattern>
+        <url-pattern>/admin/reportesDocentes.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/subirGrupos.xhtml</url-pattern>
+        <url-pattern>/admin/subirGrupos.xhtml</url-pattern>
     </filter-mapping> 
     
     <filter>
@@ -77,6 +77,6 @@
     </filter>
     <filter-mapping>
         <filter-name>FiltroAlumno</filter-name>
-        <url-pattern>/evaluacion.xhtml</url-pattern>
+        <url-pattern>/alumno/evaluacion.xhtml</url-pattern>
     </filter-mapping>
 </web-app>
