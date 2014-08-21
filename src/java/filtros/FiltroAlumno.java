@@ -24,7 +24,8 @@ public class FiltroAlumno implements Filter {
         resp.setHeader("Cache-Control", "no-cache");
         Object userInSession = session.getAttribute("alumno");
         if (userInSession == null) {
-            req.getRequestDispatcher("/loginAlumno.xhtml").forward(request, response);
+            //req.getRequestDispatcher("/loginAlumno.xhtml").forward(request, response);
+            resp.sendRedirect(req.getContextPath() + "/loginAlumno.xhtml");
             return;
         }
         chain.doFilter(request, response);

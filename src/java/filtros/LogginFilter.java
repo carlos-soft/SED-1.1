@@ -24,7 +24,8 @@ public class LogginFilter implements Filter{
         resp.setHeader("Cache-Control", "no-cache");
         Object userInSession = session.getAttribute("administrador");
         if(userInSession == null) {
-            req.getRequestDispatcher("/loginAdmin.xhtml").forward(request, response);
+            //req.getRequestDispatcher("/loginAdmin.xhtml").forward(request, response);
+            resp.sendRedirect(req.getContextPath() + "/loginAdmin.xhtml");
             return;
         }
         chain.doFilter(request, response);
