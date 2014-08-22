@@ -22,10 +22,9 @@ public class ReportesImpBO implements ReportesBO{
 
     public List<List<Integer>> getColumnas(int idDocente) {
         return reportesDAO.getColumnas(idDocente);
-    }
+    }    
 
-    public List<List<Integer>> getFilas(int idDocente) {
-        return reportesDAO.getFilas(idDocente);
+    public List<String> getComentarios(int idDocente) {
+        return reportesDAO.getComentarios(idDocente);
     }
-    
 }

@@ -18,7 +18,7 @@ public class ImpReportes extends HibernateDaoSupport implements IFaceReportes {
         try {
             Session session = getHibernateTemplate().getSessionFactory().openSession();
             Transaction tx = session.beginTransaction();
-            String sql = "select idPregunta, descripcion from reporte where idDocente ='" + idDocente + "' group by descripcion";
+            String sql = "select idPregunta, descripcion from reporte where idDocente ='" + idDocente + "' group by descripcion order by idPregunta";
             SQLQuery query = session.createSQLQuery(sql);
             query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
             data = query.list();
@@ -75,14 +75,12 @@ public class ImpReportes extends HibernateDaoSupport implements IFaceReportes {
             }
             String sql3 = "select answer from reporte where idDocente = '" + idDocente + "'";
             data3 = session.createSQLQuery(sql3).list();
-            System.out.println(data3);
             int c = 0;
             for (List<Integer> l1 : l) {
                 for (int j = 0; j < preguntas; j++, c++) {
                     l1.add(data3.get(c));
                 }
             }
-            System.out.println(l);
             tx.commit();
             session.close();
         } catch (Exception ex) {
@@ -91,56 +89,25 @@ public class ImpReportes extends HibernateDaoSupport implements IFaceReportes {
         return l;
     }
 
-    public List<List<Integer>> getFilas(int idDocente) {
+    public List<String> getComentarios(int idDocente) {
         List data = null;
-        List data2 = null;
-        List<Integer> data3 = null;
-        List<List<Integer>> l = new ArrayList<>();
+        List<String> l = new ArrayList<>();
         try {
             Session session = getHibernateTemplate().getSessionFactory().openSession();
             Transaction tx = session.beginTransaction();
-            int idEvaluacion = ((Integer) session.createQuery("select idEvaluacion from Evaluaciones where estado = 'activada'").iterate().next());
-            String sql = "select count(pe.idPregunta) as pregun "
-                    + "from PreguntasJoinEvaluacion pe join Preguntas p "
-                    + "where p.idPregunta = pe.idPregunta and pe.idEvaluacion = '" + idEvaluacion + "'";
-
+            String sql = "select comentario from reporte where idDocente ='" + idDocente + "' group by comentario";
             SQLQuery query = session.createSQLQuery(sql);
             query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
             data = query.list();
-            int preguntas = 0;
             for (Object object : data) {
                 Map row = (Map) object;
-                preguntas = Integer.parseInt(row.get("pregun").toString());
+                l.add(row.get("comentario").toString());
             }
-            for (int i = 0; i < preguntas; i++) {
-                l.add(new ArrayList<Integer>());
-            }
-            String sql2 = "select count(distinct alumno) as total "
-                    + "from reporte "
-                    + "where idDocente = '" + idDocente + "'";
-            SQLQuery query2 = session.createSQLQuery(sql2);
-            query2.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-            data2 = query2.list();
-            int alumnos = 0;
-            for (Object object : data2) {
-                Map row = (Map) object;
-                alumnos = Integer.parseInt(row.get("total").toString());
-            }
-            String sql3 = "select answer from reporte where idDocente = '" + idDocente + "'";
-            data3 = session.createSQLQuery(sql3).list();
-            int j = 0, c = 0;
-            System.out.println(data3);
-            for (int i = 0; i < alumnos; i++) {
-                for (; j <= data3.size() && c < preguntas; j++, c++) {
-                    l.get(c).add(data3.get(j));
-                }
-                c = 0;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            tx.commit();
+            session.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        System.out.println(l);
         return l;
     }
-
 }

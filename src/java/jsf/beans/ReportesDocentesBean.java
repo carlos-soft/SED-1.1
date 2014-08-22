@@ -3,11 +3,8 @@ package jsf.beans;
 import bo.DocentesImpBO;
 import bo.ReportesImpBO;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -20,9 +17,6 @@ public class ReportesDocentesBean {
     private Docentes selectedDocente;
     private DocentesImpBO docentesBO;
     private ReportesImpBO reportesBO;
-    private List<Preguntas> preguntas;
-    private List<List<Integer>> columnas;
-    private List<List<Integer>> filas;
 
     public ReportesDocentesBean() {
     }
@@ -54,30 +48,6 @@ public class ReportesDocentesBean {
     public void setReportesBO(ReportesImpBO reportesBO) {
         this.reportesBO = reportesBO;
     }
-
-    public List<Preguntas> getPreguntas() {
-        return preguntas;
-    }
-
-    public void setPreguntas(List<Preguntas> preguntas) {
-        this.preguntas = preguntas;
-    }
-
-    public List<List<Integer>> getColumnas() {
-        return columnas;
-    }
-
-    public void setColumnas(List<List<Integer>> columnas) {
-        this.columnas = columnas;
-    }
-
-    public List<List<Integer>> getFilas() {
-        return filas;
-    }
-
-    public void setFilas(List<List<Integer>> filas) {
-        this.filas = filas;
-    }
     
     @PostConstruct
     public void getAll() {
@@ -85,14 +55,13 @@ public class ReportesDocentesBean {
     }
 
     public void mostrarReporte() {
-        this.preguntas = reportesBO.getPreguntas(selectedDocente.getIdDocente());
-        this.columnas = reportesBO.getColumnas(selectedDocente.getIdDocente());
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> reqMap = ec.getSessionMap();
-        reqMap.put("preguntas", preguntas);
-        reqMap.put("calificaciones", columnas);
+        reqMap.put("preguntas", reportesBO.getPreguntas(selectedDocente.getIdDocente()));
+        reqMap.put("calificaciones", reportesBO.getColumnas(selectedDocente.getIdDocente()));
+        reqMap.put("comentarios", reportesBO.getComentarios(selectedDocente.getIdDocente()));
         try {
-            ec.redirect(ec.getRequestContextPath() + "/reporteFinal.jsp");
+            ec.redirect(ec.getRequestContextPath() + "/admin/reporteFinal.jsp");
         } catch (IOException ex) {
             ex.printStackTrace();
         }

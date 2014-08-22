@@ -112,7 +112,13 @@ public class AplicarEvaluacionBean {
             if (comentario.equals("")) {
                 comentario = "Ninguno";
             }
-            registrosBO.insert(this);
+            try {
+                registrosBO.insert(this);
+                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                 ec.redirect(ec.getRequestContextPath() + "/cerrarSesion.jsp");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error !!", "Falta contestar la(s) preguntas."));
