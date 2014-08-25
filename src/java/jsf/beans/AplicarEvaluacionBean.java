@@ -115,7 +115,7 @@ public class AplicarEvaluacionBean {
             try {
                 registrosBO.insert(this);
                  ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                 ec.redirect(ec.getRequestContextPath() + "/cerrarSesion.jsp");
+                 ec.redirect(ec.getRequestContextPath() + "/faces/cerrarSesion.jsp");
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -25,7 +25,7 @@ public class LogginFilter implements Filter{
         Object userInSession = session.getAttribute("administrador");
         if(userInSession == null) {
             //req.getRequestDispatcher("/loginAdmin.xhtml").forward(request, response);
-            resp.sendRedirect(req.getContextPath() + "/loginAdmin.xhtml");
+            resp.sendRedirect(req.getContextPath() + "/faces/loginAdmin.xhtml");
             return;
         }
         chain.doFilter(request, response);

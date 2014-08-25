@@ -35,10 +35,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
+        <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     
     <!-- Filtros de seguridad -->
@@ -48,27 +48,27 @@
     </filter>
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/admin/addEvaluacion.xhtml</url-pattern>
+        <url-pattern>/faces/admin/addEvaluacion.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/admin/addPregunta.xhtml</url-pattern>
+        <url-pattern>/faces/admin/addPregunta.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/admin/asignarPreguntas.xhtml</url-pattern>
+        <url-pattern>/faces/admin/asignarPreguntas.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/admin/reporteFinal.xhtml</url-pattern>
+        <url-pattern>/faces/admin/reporteFinal.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/admin/reportesDocentes.xhtml</url-pattern>
+        <url-pattern>/faces/admin/reportesDocentes.xhtml</url-pattern>
     </filter-mapping> 
     <filter-mapping>
         <filter-name>LogginFilter</filter-name>
-        <url-pattern>/admin/subirGrupos.xhtml</url-pattern>
+        <url-pattern>/faces/admin/subirGrupos.xhtml</url-pattern>
     </filter-mapping> 
     
     <filter>
@@ -77,6 +77,6 @@
     </filter>
     <filter-mapping>
         <filter-name>FiltroAlumno</filter-name>
-        <url-pattern>/alumno/evaluacion.xhtml</url-pattern>
+        <url-pattern>/faces/alumno/evaluacion.xhtml</url-pattern>
     </filter-mapping>
 </web-app>

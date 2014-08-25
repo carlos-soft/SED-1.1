@@ -3,13 +3,11 @@ package jsf.beans;
 import bo.DocentesImpBO;
 import bo.ReportesImpBO;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import persistencia.Docentes;
-import persistencia.Preguntas;
 
 public class ReportesDocentesBean {
 
@@ -60,6 +58,7 @@ public class ReportesDocentesBean {
         reqMap.put("preguntas", reportesBO.getPreguntas(selectedDocente.getIdDocente()));
         reqMap.put("calificaciones", reportesBO.getColumnas(selectedDocente.getIdDocente()));
         reqMap.put("comentarios", reportesBO.getComentarios(selectedDocente.getIdDocente()));
+        reqMap.put("docente", this.selectedDocente);
         try {
             ec.redirect(ec.getRequestContextPath() + "/admin/reporteFinal.jsp");
         } catch (IOException ex) {

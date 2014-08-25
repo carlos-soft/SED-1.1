@@ -1,5 +1,5 @@
 <%
         HttpSession sesion = request.getSession();
         sesion.invalidate();
-        response.sendRedirect("index.xhtml");
+        response.sendRedirect(request.getContextPath()+ "/faces/index.xhtml");
 %>

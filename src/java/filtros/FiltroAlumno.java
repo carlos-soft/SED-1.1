@@ -25,7 +25,7 @@ public class FiltroAlumno implements Filter {
         Object userInSession = session.getAttribute("alumno");
         if (userInSession == null) {
             //req.getRequestDispatcher("/loginAlumno.xhtml").forward(request, response);
-            resp.sendRedirect(req.getContextPath() + "/loginAlumno.xhtml");
+            resp.sendRedirect(req.getContextPath() + "/faces/loginAlumno.xhtml");
             return;
         }
         chain.doFilter(request, response);
