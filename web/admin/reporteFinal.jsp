@@ -1,21 +1,35 @@
-<ui:composition template="../reportesLayout.xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <%@page import="persistencia.Preguntas"%>
-    <%@page import="java.util.List"%>
-    <%@page import="persistencia.Docentes"%>
-    <%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
-    <%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 
-    <%
-        HttpSession sesion = request.getSession();
-        List<Preguntas> p = (List<Preguntas>) sesion.getAttribute("preguntas");
-        List<List<Integer>> c = (List<List<Integer>>) sesion.getAttribute("calificaciones");
-        List<String> com = (List<String>) sesion.getAttribute("comentarios");
-        Docentes d = (Docentes) sesion.getAttribute("docente");
-    %>
+<%@page import="persistencia.Preguntas"%>
+<%@page import="java.util.List"%>
+<%@page import="persistencia.Docentes"%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 
-    <ui:define name="content">
-        <div align="center">
+<%
+    HttpSession sesion = request.getSession();
+    List<Preguntas> p = (List<Preguntas>) sesion.getAttribute("preguntas");
+    List<List<Integer>> c = (List<List<Integer>>) sesion.getAttribute("calificaciones");
+    List<String> com = (List<String>) sesion.getAttribute("comentarios");
+    Docentes d = (Docentes) sesion.getAttribute("docente");
+%>
+<html>
+    <head></head>
+    <body>
+        <div style="position: absolute; 
+             right: 6%; left: 0%; 
+             top: 0%; height: 16%;
+             margin-bottom: 4%;
+             background: #ffffff;">
+            <img src="../resources/img/logo5.png"/>
+        </div>
+        <div style="padding: 1%;
+             border: thin solid lightGray;
+             background: #ffffff;
+             position: absolute;
+             right: 1%;
+             left: 0%;
+             top: 12%;
+             height: 82%;">
             <table border="2">
                 <tr>
                     <th>PREGUNTA</th>
@@ -49,5 +63,5 @@
                 </tr>
             </table>
         </div>
-    </ui:define>
-</ui:composition>
+    </body>
+</html>

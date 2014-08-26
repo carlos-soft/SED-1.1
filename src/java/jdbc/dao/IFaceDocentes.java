@@ -4,9 +4,10 @@ import java.util.List;
 import persistencia.Docentes;
 
 public interface IFaceDocentes {
-
     void insert(Docentes obj);
     List<Docentes> getAll();
     List<Docentes> getAllFromEvaluacion();
     Docentes getFromAlumno(int idGrupo);
+    String getGroupName(int idDocente);
+    String getEvaluacionActiva();
 }

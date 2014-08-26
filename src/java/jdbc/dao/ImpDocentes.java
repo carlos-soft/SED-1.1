@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import persistencia.Docentes;
 import persistencia.Evaluaciones;
+import persistencia.Grupos;
 
 public class ImpDocentes extends HibernateDaoSupport implements IFaceDocentes {
 
@@ -73,6 +74,15 @@ public class ImpDocentes extends HibernateDaoSupport implements IFaceDocentes {
             ex.printStackTrace();
         }
         return d;
+    }
+
+    public String getGroupName(int idDocente) {
+        return ((Grupos)getHibernateTemplate().find("from Grupos where idDocente = '"+idDocente+"'").get(0)).getNombre();
+    }
+
+    @Override
+    public String getEvaluacionActiva() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -9,4 +9,6 @@ public interface DocentesBO {
     List<Docentes> getAll();
     List<Docentes> getAllFromEvaluacion();
     Docentes getFromAlumno(int idGrupo);
+    String getGroupName(int idDocente);
+    String getEvaluacionActiva();
 }
