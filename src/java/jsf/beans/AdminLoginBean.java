@@ -44,7 +44,7 @@ public class AdminLoginBean {
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             Map<String, Object> sessionMap = ec.getSessionMap();
             sessionMap.put("administrador", "pass");
-            ec.redirect(ec.getRequestContextPath() + "/faces/admin/addEvaluacion.xhtml");
+            ec.redirect(ec.getRequestContextPath() + "/admin/addEvaluacion.faces");
         } else {
         }
     }

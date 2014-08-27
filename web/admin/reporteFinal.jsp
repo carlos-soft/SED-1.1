@@ -11,9 +11,11 @@
     List<List<Integer>> c = (List<List<Integer>>) sesion.getAttribute("calificaciones");
     List<String> com = (List<String>) sesion.getAttribute("comentarios");
     Docentes d = (Docentes) sesion.getAttribute("docente");
+    String grupo = (String) sesion.getAttribute("grupo");
+    String evaluacion = (String) sesion.getAttribute("evaluacion");
 %>
 <html>
-    <head></head>
+    <head><title>S E D</title></head>
     <body>
         <div style="position: absolute; 
              right: 6%; left: 0%; 
@@ -29,9 +31,23 @@
              right: 1%;
              left: 0%;
              top: 12%;
-             height: 82%;">
-            <table border="2">
+             height: 82%;" align="center">
+            <table style="font-family: monospace; font-size: 15px;">
                 <tr>
+                    <td style="text-align: right; font-weight: bold;">EVALUACION: </td>
+                    <td> <%= evaluacion%></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">DOCENTE: </td>
+                    <td> <%= d.getNombre()%></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right; font-weight: bold;">GRUPO: </td>
+                    <td> <%= grupo%></td>
+                </tr>
+            </table><br/>
+            <table border="2" style="font-family:Tahoma;">
+                <tr style="text-align: center;">
                     <th>PREGUNTA</th>
                         <% for (int i = 0; i < c.size(); i++) {%>
                     <th><%="A#" + (i + 1)%></th>
@@ -39,20 +55,20 @@
                 </tr>
                 <% for (int i = 0; i < p.size(); i++) {%>
                 <tr>
-                    <td>
+                    <td style="text-align: left; font-family: Tahoma;">
                         <%= p.get(i).getDescripcion()%>
                     </td>
                     <% for (int j = 0; j < c.size(); j++) {%>
-                    <td >
+                    <td style="text-align: center; font-family: monospace; font-size: 15px;">
                         <%= c.get(j).get(i)%>
                     </td>
                     <% } %>
                 </tr>
                 <% }%>
             </table><br/><br/>
-            <table border="2">
+            <table border="2" style="font-family:Tahoma;">
                 <tr>
-                    <th>COMENTARIOS</th>
+                    <th style="text-align: center; font-weight: bold;">COMENTARIOS</th>
                 </tr>
                 <%for (String comentario : com) {%>
                 <tr>

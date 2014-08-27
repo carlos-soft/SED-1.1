@@ -80,9 +80,9 @@ public class ImpDocentes extends HibernateDaoSupport implements IFaceDocentes {
         return ((Grupos)getHibernateTemplate().find("from Grupos where idDocente = '"+idDocente+"'").get(0)).getNombre();
     }
 
-    @Override
     public String getEvaluacionActiva() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Evaluaciones e = ((Evaluaciones) getHibernateTemplate().find("from Evaluaciones where estado='activada'").get(0));
+        return e.getLenguaje() + ": " + e.getFechaInicio() + "-" + e.getFechaFin()+".";
     }
 
 }

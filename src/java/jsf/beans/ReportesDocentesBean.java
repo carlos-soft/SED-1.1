@@ -60,6 +60,7 @@ public class ReportesDocentesBean {
         reqMap.put("comentarios", reportesBO.getComentarios(selectedDocente.getIdDocente()));
         reqMap.put("docente", this.selectedDocente);
         reqMap.put("grupo", docentesBO.getGroupName(selectedDocente.getIdDocente()));
+        reqMap.put("evaluacion", docentesBO.getEvaluacionActiva());
         try {
             ec.redirect(ec.getRequestContextPath() + "/admin/reporteFinal.jsp");
         } catch (IOException ex) {
